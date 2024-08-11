@@ -10,8 +10,8 @@ import { coordinates, APIkey } from "../../utils/constants";
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "",
-    temp: { F: 999, C: 999 },
-    location: "",
+    // temp: { F: 999 },
+    // location: "",
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
