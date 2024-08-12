@@ -1,18 +1,18 @@
 import "./Header.css";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.png";
-function Header({ handleAddClick, wheatherData }) {
-  // const currentDate = new Date().toLocaleString("default", {
-  //  month: "long",
-  //  day: "numeric",
-  //  });
+function Header({ handleAddClick }, weatherData) {
+  const currentDate = new Date().toLocaleString("default", {
+    month: "long",
+    day: "numeric",
+  });
   return (
     <header className="header">
       <img src={logo} className="header__logo" />
-      {/* <p className="header__date-location">
+      <p className="header__date-location">
         {" "}
-        {currentDate}, {wheatherData.location}
-      </p> */}
+        {currentDate}, {weatherData.location}
+      </p>
       <button
         onClick={handleAddClick}
         type="button"

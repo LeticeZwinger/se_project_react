@@ -5,17 +5,16 @@ import ItemCard from "../ItemCard/ItemCard.jsx";
 function Main({ weatherData, handleCardClick }) {
   return (
     <main>
-      <WeatherCard />
-      {/* <WeatherCard WeatherData={WeatherData} />*/}
+      <WeatherCard weatherData={weatherData} />
       <section className="cards">
         <p className="cards__text">
-          {/* today is {weatherData.temp.F} &deg; F you may want to wear: */}
+          today is {weatherData.temp.F} &deg; F you may want to wear:
         </p>
         <ul className="cards__list">
           {defaultClothingItems
-            .filter((item) => {
-              return item.weather === weatherData.type;
-            })
+            // .filter((item) => {
+            //   return item.weather === weatherData.type;
+            // })
             .map((item) => {
               return (
                 <ItemCard
