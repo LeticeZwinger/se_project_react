@@ -4,6 +4,11 @@
   width: 323px;
   border-radius: 12%;
   position: relative;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #00000099;
 }
 
 .card__name {
@@ -11,8 +16,16 @@
   top: 15px;
   margin: 0;
   background-color: #fff;
+  border-radius: 4px;
+  width: fit-content;
+  height: fit-content;
+  padding: 2px 12px;
+  gap: 8px;
+  background-color: #fff;
 }
 
 .card__image {
   width: 100%;
+  border-radius: 4%;
+  border: 1px solid #0000004d;
 }

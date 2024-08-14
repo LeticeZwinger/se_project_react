@@ -1,0 +1,16 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 40px;
+  margin-top: 171px;
+  font-family: "Cabinet Grotesk", sans-serif;
+}
+
+.footer__text {
+  margin: 0;
+}
+
+.footer__year {
+  margin: 0;
+}

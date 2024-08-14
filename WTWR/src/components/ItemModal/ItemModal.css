@@ -1,0 +1,23 @@
+.modal__image {
+  max-height: 498px;
+  border-radius: 12px 12px 0px 0px;
+  max-width: 100%;
+}
+
+.modal__content_type_item {
+  width: 498px;
+  height: 610px;
+  padding: 0;
+}
+
+.modal__weather {
+  margin-left: 32px;
+}
+
+.modal__caption {
+  margin-left: 32px;
+}
+
+.modal__close-button_item {
+  background: url(../../assets/close_item_icon.svg) center no-repeat;
+}
