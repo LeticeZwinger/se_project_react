@@ -1,3 +1,75 @@
+export const weatherOptions = [
+  {
+    day: true,
+    condition: "clear",
+    url: new URL("../assets/day/clear.png", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "cloudy",
+    url: new URL("../assets/day/cloudy.png", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "fog",
+    url: new URL("../assets/day/fog.png", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "rain",
+    url: new URL("../assets/day/rain.png", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "snow",
+    url: new URL("../assets/day/snow.png", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "storm",
+    url: new URL("../assets/day/storm.png", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "clear",
+    url: new URL("../assets/nignt/clear_nignt.png", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "cloudy",
+    url: new URL("../assets/nignt/cloudy_nignt.png", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "fog",
+    url: new URL("../assets/nignt/fog_nignt.png", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "rain",
+    url: new URL("../assets/nignt/rain_nignt.png", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "snow",
+    url: new URL("../assets/nignt/snow_nignt.png", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "storm",
+    url: new URL("../assets/nignt/storm_nignt.png", import.meta.url).href,
+  },
+];
+
+export const defaultWeatherOptions = {
+  day: {
+    url: new URL("../assets/day/day_default.png", import.meta.url).href,
+  },
+  night: {
+    url: new URL("../assets/night/night_default.png", import.meta.url).href,
+  },
+};
+
 export const defaultClothingItems = [
   {
     _id: 0,

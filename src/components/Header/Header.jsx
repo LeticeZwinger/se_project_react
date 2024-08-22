@@ -1,6 +1,7 @@
 import "./Header.css";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.png";
+
 function Header({ handleAddClick }, weatherData) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -13,6 +14,7 @@ function Header({ handleAddClick }, weatherData) {
         {" "}
         {currentDate}, {weatherData.location}
       </p>
+
       <button
         onClick={handleAddClick}
         type="button"
