@@ -1,7 +1,11 @@
 import "./WeatherCard.css";
 import { weatherOptions, defaultWeatherOptions } from "../../utils/constants";
+import { CurrentTempUnitContext } from "../Contexts/CurrentTempUnitContext";
+import { useContext } from "react";
 
 function WeatherCard({ weatherData }) {
+  const { currentTempUnit, toConvert } = useContext(CurrentTempUnitContext);
+
   const weatherOption =
     weatherOptions.find(
       (option) =>
@@ -11,7 +15,9 @@ function WeatherCard({ weatherData }) {
 
   return (
     <section className="weather-card">
-      <p className="weather-card__temp">{weatherData.temp.F} &deg; F</p>
+      <p className="weather-card__temp">
+        {toConvert(weatherData.temp.F)} &deg; {currentTempUnit}
+      </p>
       <img
         src={weatherOption.url}
         alt={`Card showing ${

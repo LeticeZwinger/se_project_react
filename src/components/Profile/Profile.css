@@ -1,0 +1,6 @@
+.profile {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  font-family: "Cabinet Grotesk", sans-serif;
+}

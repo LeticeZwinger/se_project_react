@@ -11,6 +11,10 @@
   color: #00000099;
 }
 
+.card {
+  gap: 8px;
+  display: flex;
+}
 .card__name {
   position: absolute;
   top: 15px;
@@ -28,4 +32,24 @@
   width: 100%;
   border-radius: 4%;
   border: 1px solid #0000004d;
+}
+.cards {
+  font-family: "Cabinet Grotesk", sans-serif;
+}
+
+.cards__text {
+  margin: 40px auto 34px 0;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24.8px;
+  color: #000000;
+}
+
+.cards__list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  gap: 21px;
 }
