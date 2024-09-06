@@ -1,24 +1,27 @@
-export const getWeather = ({ latitude, longitude }, APIkey) => {
-  return fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`,
-  ).then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Error: ${res.status}`);
-    }
-  });
-};
 const baseUrl = "http://localhost:3001";
 
-export const getItems = () => {
-  return fetch(`${baseUrl}/items`)
-    .then((res) => res.json())
-    .catch((err) => console.error(err));
+export const getWeather = ({ latitude, longitude }, APIkey) => {
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`;
+  return request(url);
 };
 
+export const getItems = () => {
+  return request(`${baseUrl}/items`);
+};
+
+function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  } else {
+    return Promise.reject(`Error: ${res.status}`);
+  }
+}
+function request(url, options) {
+  return fetch(url, options).then(checkResponse);
+}
+
 export const addItem = (name, imageUrl, weather) => {
-  return fetch(`${baseUrl}/items`, {
+  return request(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -28,17 +31,13 @@ export const addItem = (name, imageUrl, weather) => {
       imageUrl,
       weather,
     }),
-  })
-    .then((res) => res.json())
-    .catch((err) => console.error(err));
+  });
 };
 
 export const deleteItem = (itemId) => {
-  return fetch(`${baseUrl}/items/${itemId}`, {
+  return request(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
-  })
-    .then((res) => res.json())
-    .catch((err) => console.error(err));
+  });
 };
 
 export const filterWeatherData = (data) => {

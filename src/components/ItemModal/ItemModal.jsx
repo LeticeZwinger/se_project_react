@@ -1,10 +1,16 @@
 import "./ItemModal.css";
+import { Modal } from "../Modal/Modal";
 
 function ItemModal({ activeModal, onClose, deleteItem, card }) {
   return (
     <>
       {activeModal === "preview" && (
-        <div className="modal modal__opened">
+        <Modal
+          name="item"
+          isOpen={activeModal === "preview"}
+          onClose={onClose}
+          containerClassName="modal__container_item"
+        >
           <div className="modal__content modal__content_type_item">
             <button
               onClick={onClose}
@@ -26,7 +32,7 @@ function ItemModal({ activeModal, onClose, deleteItem, card }) {
               Delete item
             </button>
           </div>
-        </div>
+        </Modal>
       )}
     </>
   );

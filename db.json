@@ -7,12 +7,6 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Beanie.png?etag=bc10497cc80fa557f036e94f9999f7b2"
     },
     {
-      "_id": 1,
-      "name": "Boot",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Boot.png?etag=0953a2ea59f1c6ebc832fabacdc9c70e"
-    },
-    {
       "_id": 2,
       "name": "Cap",
       "weather": "hot",
@@ -29,12 +23,6 @@
       "name": "Dress",
       "weather": "hot",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Dress.png?etag=1f9cd32a311ab139cab43494883720bf"
-    },
-    {
-      "_id": 5,
-      "name": "Hoodie",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Hoodie.png?etag=5f52451d0958ccb1016c78a45603a4e8"
     },
     {
       "_id": 6,
@@ -89,6 +77,30 @@
       "name": "T-Shirt",
       "weather": "hot",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
+    },
+    {
+      "name": "im",
+      "imageUrl": "https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg",
+      "weather": "cold",
+      "_id": 17
+    },
+    {
+      "name": "as",
+      "imageUrl": "https://cdn.pixabay.com/photo/2023/11/09/19/36/zoo-8378189_640.jpg",
+      "weather": "hot",
+      "_id": 18
+    },
+    {
+      "name": "bird",
+      "imageUrl": "https://www.nps.gov/articles/images/prothonotary_warbler_npgallery_public_domain_nps_sized.jpg?maxwidth=650&autorotate=false",
+      "weather": "warm",
+      "_id": 19
+    },
+    {
+      "name": "goofy",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMVoDYEmCWU9KhEZQLccE1usaTx8_-f2BGtvslCZcfuXQPF9LCdfVJVUhTmwJ4qYYOEgE&usqp=CAU",
+      "weather": "hot",
+      "_id": 20
     }
   ],
   "posts": [

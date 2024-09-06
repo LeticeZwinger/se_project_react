@@ -8,7 +8,7 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
-import { CurrentTempUnitContext } from "../Contexts/CurrentTempUnitContext";
+import { CurrentTempUnitContext } from "../../Contexts/CurrentTempUnitContext";
 import {
   filterWeatherData,
   getWeather,
@@ -30,7 +30,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [clothesItem, setClothesItem] = useState([]);
-  useContext(CurrentTempUnitContext);
+  const [selectedOption, setSelectedOption] = useState("");
 
   useEffect(() => {
     getItems()
@@ -62,6 +62,21 @@ function App() {
   const closeActiveModal = () => {
     setActiveModal("");
   };
+  useEffect(() => {
+    if (!activeModal) return;
+
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
 
   const openDeleteModal = () => {
     setActiveModal("delete");
@@ -72,11 +87,7 @@ function App() {
     setSelectedCard(card);
   };
 
-  const handleAddItem = (
-    e,
-    data = { name: "", imageURL: "", selectedWeather: "" },
-  ) => {
-    e.preventDefault();
+  const handleAddItem = (data) => {
     addItem(data.name, data.imageURL, data.selectedWeather)
       .then((newItem) => {
         console.log(newItem);
@@ -124,12 +135,14 @@ function App() {
         </Routes>
       </div>
 
-      <AddItemModal
-        isOpen={activeModal === "add-garment"}
-        handleCloseClick={closeActiveModal}
-        handleAddItem={handleAddItem}
-        handleOptionChange={handleOptionChange}
-      />
+      {activeModal === "add-garment" && (
+        <AddItemModal
+          isOpen={activeModal === "add-garment"}
+          handleCloseClick={closeActiveModal}
+          handleAddItem={handleAddItem}
+          handleOptionChange={handleOptionChange}
+        />
+      )}
 
       {activeModal === "preview" && (
         <ItemModal
