@@ -9,17 +9,6 @@ export const getItems = () => {
   return request(`${baseUrl}/items`);
 };
 
-function checkResponse(res) {
-  if (res.ok) {
-    return res.json();
-  } else {
-    return Promise.reject(`Error: ${res.status}`);
-  }
-}
-function request(url, options) {
-  return fetch(url, options).then(checkResponse);
-}
-
 export const addItem = (name, imageUrl, weather) => {
   return request(`${baseUrl}/items`, {
     method: "POST",
@@ -39,6 +28,36 @@ export const deleteItem = (itemId) => {
     method: "DELETE",
   });
 };
+
+export const addCardLike = (id, token) => {
+  return request(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const removeCardLike = (id, token) => {
+  return request(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  } else {
+    return Promise.reject(`Error: ${res.status}`);
+  }
+}
+
+function request(url, options) {
+  return fetch(url, options).then(checkResponse);
+}
 
 export const filterWeatherData = (data) => {
   const result = {};

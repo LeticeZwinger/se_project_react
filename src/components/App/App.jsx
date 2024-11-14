@@ -17,7 +17,12 @@ import {
 import DeleteModal from "../DeleteModal/DeleteModal";
 import { coordinates, APIkey } from "../../utils/constants";
 import RegisterModal from "../RegisterModal/RegisterModal";
-import { registerUser, loginUser, verifyToken } from "../../utils/auth";
+import {
+  registerUser,
+  loginUser,
+  verifyToken,
+  updateUserProfile,
+} from "../../utils/auth";
 import {
   CurrentUserProvider,
   CurrentUserContext,
@@ -36,11 +41,9 @@ function App() {
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
-  // Access currentUser and isLoggedIn from CurrentUserContext
   const { currentUser, setCurrentUser, isLoggedIn, setIsLoggedIn } =
     useContext(CurrentUserContext);
 
-  // Token verification effect
   useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token) {
@@ -133,6 +136,15 @@ function App() {
       })
       .catch(console.error);
   };
+  const handleUpdateProfile = async (updatedData) => {
+    const token = localStorage.getItem("jwt");
+    try {
+      const updatedUser = await updateUserProfile(token, updatedData);
+      setCurrentUser(updatedUser);
+    } catch (error) {
+      console.error("Failed to update profile:", error);
+    }
+  };
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -181,6 +193,10 @@ function App() {
                   <div>Please log in to view this page.</div>
                 )
               }
+            />
+            <Route
+              path="/profile"
+              element={<Profile handleUpdateProfile={handleUpdateProfile} />}
             />
           </Routes>
         </div>

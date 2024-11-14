@@ -1,4 +1,3 @@
-// Utils/Auth.js
 const BASE_URL = "http://localhost:3001";
 
 export const registerUser = async ({ name, avatar, email, password }) => {
@@ -40,5 +39,18 @@ export const verifyToken = async (token) => {
   if (!response.ok) {
     throw new Error("Failed to verify token");
   }
+  return response.json();
+};
+
+export const updateUserProfile = async (token, { name, avatar }) => {
+  const response = await fetch(`${BASE_URL}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  });
+  if (!response.ok) throw new Error("Failed to update profile");
   return response.json();
 };
