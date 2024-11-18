@@ -33,17 +33,32 @@
   line-height: 24px;
   background: transparent;
 }
+
 .header__user-container {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.header__username {
-  margin: 0;
+.header__login,
+.header__signup {
+  margin: 0 10px;
+  border: none;
+  background: transparent;
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
+  cursor: pointer;
+}
+
+.header__logout {
+  margin-left: 20px;
+  border: none;
+  background: transparent;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
 }
 
 .header__link {

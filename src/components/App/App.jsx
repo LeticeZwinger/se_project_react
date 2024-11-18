@@ -49,6 +49,7 @@ function App() {
     if (token) {
       verifyToken(token)
         .then((userData) => {
+          console.log("User data:", userData);
           setCurrentUser(userData);
           setIsLoggedIn(true);
         })
