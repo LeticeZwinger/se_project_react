@@ -80,16 +80,16 @@ function Header({ handleAddClick }, weatherData) {
         ) : (
           <>
             <button
-              className="header__login"
-              onClick={() => setIsLoginModalOpen(true)}
-            >
-              Log In
-            </button>
-            <button
               className="header__signup"
               onClick={() => setIsSignupModalOpen(true)}
             >
               Sign Up
+            </button>
+            <button
+              className="header__login"
+              onClick={() => setIsLoginModalOpen(true)}
+            >
+              Log In
             </button>
           </>
         )}
