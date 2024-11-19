@@ -1,16 +1,19 @@
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { CurrentUserContext } from "../../Contexts/CurrentUserContext";
+import { BASE_URL } from "../../utils/auth";
 
 function LoginModal({ isOpen, onClose }) {
   const { setCurrentUser, setIsLoggedIn } = useContext(CurrentUserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://0.0.0.0:3001/signin", {
+    fetch(`${BASE_URL}/signin`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,7 +28,7 @@ function LoginModal({ isOpen, onClose }) {
       })
       .then((data) => {
         localStorage.setItem("jwt", data.token);
-        return fetch("http://0.0.0.0:3001/users/me", {
+        return fetch(`${BASE_URL}/users/me`, {
           headers: {
             Authorization: `Bearer ${data.token}`,
           },
@@ -36,6 +39,7 @@ function LoginModal({ isOpen, onClose }) {
         setCurrentUser(userData);
         setIsLoggedIn(true);
         onClose();
+        // navigate("/profile");
       })
       .catch((err) => {
         setError(err.message);

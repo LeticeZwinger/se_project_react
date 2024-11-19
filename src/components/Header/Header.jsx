@@ -5,18 +5,18 @@ import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { useContext, useState, useEffect } from "react";
 import { CurrentUserContext } from "../../Contexts/CurrentUserContext";
 import LoginModal from "../LoginModal/LoginModal";
-import SignupModal from "../SignupModal/SignupModal";
+import RegisterModal from "../RegisterModal/RegisterModal";
 
 function Header({ handleAddClick }, weatherData) {
   const { currentUser, setCurrentUser, isLoggedIn, setIsLoggedIn } =
     useContext(CurrentUserContext);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
-
+  const baseURL = "http://0.0.0.0:3001";
   useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token && !currentUser) {
-      fetch("http://0.0.0.0:3001/users/me", {
+      fetch(`${baseURL}/users/me`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -105,7 +105,7 @@ function Header({ handleAddClick }, weatherData) {
         />
       )}
       {isSignupModalOpen && (
-        <SignupModal
+        <RegisterModal
           isOpen={isSignupModalOpen}
           onClose={() => setIsSignupModalOpen(false)}
         />

@@ -1,6 +1,7 @@
 import "./ItemCard.css";
 import { useContext, useState } from "react";
 import { CurrentUserContext } from "../../Contexts/CurrentUserContext";
+import { BASE_URL } from "../../utils/auth";
 
 function ItemCard({ item, onCardClick }) {
   const { currentUser } = useContext(CurrentUserContext);
@@ -17,7 +18,7 @@ function ItemCard({ item, onCardClick }) {
       console.log(`Item liked: ${item._id}`);
     }
 
-    fetch(`http://0.0.0.0:3001/items/${item._id}/likes`, {
+    fetch(`${BASE_URL}/items/${item._id}/likes`, {
       method: isLiked ? "DELETE" : "PUT",
       headers: {
         "Content-Type": "application/json",

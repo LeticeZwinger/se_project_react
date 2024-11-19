@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
 import Profile from "../Profile/Profile";
@@ -189,15 +189,12 @@ function App() {
                     clothingItems={clothesItem}
                     handleAddClick={handleAddClick}
                     onDeleteItem={handleDeleteItem}
+                    handleUpdateProfile={handleUpdateProfile}
                   />
                 ) : (
-                  <div>"please login" msg goes here</div>
+                  <Navigate to="/" replace />
                 )
               }
-            />
-            <Route
-              path="/profile"
-              element={<Profile handleUpdateProfile={handleUpdateProfile} />}
             />
           </Routes>
         </div>
