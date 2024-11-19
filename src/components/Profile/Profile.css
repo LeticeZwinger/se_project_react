@@ -4,3 +4,15 @@
   gap: 100px;
   font-family: "Cabinet Grotesk", sans-serif;
 }
+
+.profile__edit-button,
+.profile__sign-out-button {
+  margin-bottom: 8px;
+  width: 229px;
+  border: none;
+  background: transparent;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  cursor: pointer;
+}

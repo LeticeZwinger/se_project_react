@@ -76,9 +76,6 @@ function Header({ handleAddClick }, weatherData) {
                 />
               </div>
             </Link>
-            <button className="header__logout" onClick={handleLogout}>
-              Sign Out
-            </button>
           </>
         ) : (
           <>

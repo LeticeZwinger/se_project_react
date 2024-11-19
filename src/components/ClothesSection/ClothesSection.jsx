@@ -3,10 +3,10 @@ import ItemCard from "../ItemCard/ItemCard";
 function ClothesSection({ handleCardClick, clothesItems, handleAddClick }) {
   return (
     <div className="clothes-section">
-      <div className="clothes-section__title">
+      <div className="section__title_btn">
         <p>Your items</p>
         <button
-          className="clothes-section__add-clothes-btn"
+          className="header__add-clothes-btn"
           type="button"
           onClick={handleAddClick}
         >

@@ -21,28 +21,31 @@ const EditProfileModal = ({ isOpen, onClose, onUpdateProfile }) => {
   if (!isOpen) return null;
 
   return (
-    <div className=" modal modal__container_form ">
-      <form onSubmit={handleSubmit}>
-        <h2>Edit Profile</h2>
-        <label>
+    <div className=" modal">
+      <form className="modal__form" onSubmit={handleSubmit}>
+        <label className="modal__label">
           Name:
           <input
+            className="modal__input"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
           />
         </label>
-        <label>
+        <label className="modal__label">
           Avatar URL:
           <input
+            className="modal__input"
             type="text"
             value={avatar}
             onChange={(e) => setAvatar(e.target.value)}
           />
         </label>
-        <button type="submit">Save</button>
-        <button type="button" onClick={onClose}>
+        <button className="modal__submit" type="submit">
+          Save
+        </button>
+        <button className="modal__submit" type="button" onClick={onClose}>
           Cancel
         </button>
       </form>
