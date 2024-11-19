@@ -21,7 +21,7 @@ const EditProfileModal = ({ isOpen, onClose, onUpdateProfile }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="edit-profile-modal">
+    <div className=" modal modal__container_form ">
       <form onSubmit={handleSubmit}>
         <h2>Edit Profile</h2>
         <label>

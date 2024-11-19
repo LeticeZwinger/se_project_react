@@ -1,14 +1,40 @@
 import "./ItemCard.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CurrentUserContext } from "../../Contexts/CurrentUserContext";
 
-function ItemCard({ item, onCardClick, onCardLike }) {
-  const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
+function ItemCard({ item, onCardClick }) {
+  const { currentUser } = useContext(CurrentUserContext);
+  const [likes, setLikes] = useState(item.likes);
 
   const isLiked = item.likes.some((id) => id === currentUser?._id);
 
   const handleLike = () => {
-    onCardLike({ id: item._id, isLiked });
+    if (isLiked) {
+      item.likes = item.likes.filter((id) => id !== currentUser._id);
+      console.log(`Item unliked: ${item._id}`);
+    } else {
+      item.likes.push(currentUser._id);
+      console.log(`Item liked: ${item._id}`);
+    }
+
+    fetch(`http://0.0.0.0:3001/items/${item._id}/likes`, {
+      method: isLiked ? "DELETE" : "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to update like status");
+        }
+        return res.json();
+      })
+      .then((updatedItem) => {
+        setLikes(updatedItem.likes);
+        console.log("Item successfully updated:", updatedItem);
+      })
+      .catch((err) => console.error(err));
   };
 
   const itemLikeButton = `card__like-button ${
@@ -28,12 +54,9 @@ function ItemCard({ item, onCardClick, onCardLike }) {
         src={item.imageUrl}
         alt={item.name}
       />
-
-      {isLoggedIn && (
-        <button className={itemLikeButton} onClick={handleLike}>
-          {isLiked ? "Unlike" : "Like"}
-        </button>
-      )}
+      <button className={itemLikeButton} onClick={handleLike}>
+        {isLiked ? "" : ""}
+      </button>
     </li>
   );
 }

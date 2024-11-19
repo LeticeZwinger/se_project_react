@@ -31,6 +31,7 @@
   width: 100%;
   border-radius: 4%;
   border: 1px solid #0000004d;
+  position: relative;
 }
 .cards {
   font-family: "Cabinet Grotesk", sans-serif;
@@ -51,4 +52,19 @@
   padding: 0;
   list-style-type: none;
   gap: 21px;
+}
+
+.card__like-button {
+  width: 24px;
+  height: 24px;
+  background: url("../../assets/like_button.svg") no-repeat;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+}
+
+.card__like-button_active {
+  background: url("../../assets/liked_button.svg") no-repeat;
+  background-size: contain;
 }

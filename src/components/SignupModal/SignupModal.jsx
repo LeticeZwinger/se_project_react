@@ -12,6 +12,7 @@ function SignupModal({ isOpen, onClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError("");
     fetch("http://0.0.0.0:3001/signup", {
       method: "POST",
       headers: {
@@ -22,7 +23,10 @@ function SignupModal({ isOpen, onClose }) {
       .then((res) => {
         if (res.ok) return res.json();
         return res.json().then((data) => {
-          throw new Error(data.message);
+          if (res.status === 409) {
+            throw new Error("An account with this email already exists.");
+          }
+          throw new Error(data.message || "Something went wrong.");
         });
       })
       .then(() => {
@@ -37,7 +41,7 @@ function SignupModal({ isOpen, onClose }) {
       .then((res) => {
         if (res.ok) return res.json();
         return res.json().then((data) => {
-          throw new Error(data.message);
+          throw new Error(data.message || "Unable to sign in.");
         });
       })
       .then((data) => {

@@ -10,10 +10,12 @@ export const getItems = () => {
 };
 
 export const addItem = (name, imageUrl, weather) => {
+  const token = localStorage.getItem("jwt");
   return request(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       name,
@@ -24,8 +26,13 @@ export const addItem = (name, imageUrl, weather) => {
 };
 
 export const deleteItem = (itemId) => {
+  const token = localStorage.getItem("jwt");
   return request(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
   });
 };
 
@@ -33,6 +40,7 @@ export const addCardLike = (id, token) => {
   return request(`${baseUrl}/items/${id}/likes`, {
     method: "PUT",
     headers: {
+      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
   });
@@ -42,6 +50,7 @@ export const removeCardLike = (id, token) => {
   return request(`${baseUrl}/items/${id}/likes`, {
     method: "DELETE",
     headers: {
+      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
   });

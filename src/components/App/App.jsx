@@ -191,7 +191,7 @@ function App() {
                     onDeleteItem={handleDeleteItem}
                   />
                 ) : (
-                  <div>Please log in to view this page.</div>
+                  <div>"please login" msg goes here</div>
                 )
               }
             />

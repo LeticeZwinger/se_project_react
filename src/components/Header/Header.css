@@ -12,6 +12,12 @@
   line-height: 24px;
 }
 
+.header__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
 .header__logo {
   margin-right: 24px;
 }
