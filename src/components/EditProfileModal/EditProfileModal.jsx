@@ -1,34 +1,45 @@
 import React, { useState, useContext, useEffect } from "react";
 import { CurrentUserContext } from "../../Contexts/CurrentUserContext";
-import Modal from "../ModalWithForm/ModalWithForm";
+import { Modal } from "../Modal/Modal";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./EditProfileModal.css";
 const EditProfileModal = ({ isOpen, onClose, onUpdateProfile }) => {
   const { currentUser } = useContext(CurrentUserContext);
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
+  const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
-    if (isOpen && currentUser) {
-      setName(currentUser.name);
-      setAvatar(currentUser.avatar);
+    if (isOpen) {
+      setName("");
+      setAvatar("");
     }
-  }, [isOpen, currentUser]);
+  }, [isOpen]);
+  useEffect(() => {
+    const isValidName = name.trim().length > 0;
+    const isValidAvatar = avatar.trim().startsWith("http");
+    setIsFormValid(isValidName && isValidAvatar);
+  }, [name, avatar]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onUpdateProfile({ name, avatar });
+    if (isFormValid) {
+      onUpdateProfile({ name, avatar });
+      onClose();
+    }
   };
 
   if (!isOpen) return null;
 
   return (
-    // name="form"
-    // isOpen={isOpen}
-    // onClose={onClose}
-    // containerClassName="modal__container_edit-profile"
-    // >
-    <div className=" modal">
+    <Modal
+      name="edit profile"
+      isOpen={isOpen}
+      onClose={onClose}
+      containerClassName="modal__container_edit-profile"
+    >
       <form className="modal__form" onSubmit={handleSubmit}>
+        <label className="modal__title">Change profile data</label>
         <label className="modal__label">
           Name:
           <input
@@ -40,7 +51,7 @@ const EditProfileModal = ({ isOpen, onClose, onUpdateProfile }) => {
           />
         </label>
         <label className="modal__label">
-          Avatar URL:
+          Avatar:
           <input
             className="modal__input"
             type="text"
@@ -48,14 +59,17 @@ const EditProfileModal = ({ isOpen, onClose, onUpdateProfile }) => {
             onChange={(e) => setAvatar(e.target.value)}
           />
         </label>
-        <button className="modal__submit" type="submit">
-          Save
-        </button>
-        <button className="modal__submit" type="button" onClick={onClose}>
-          Cancel
+        <button
+          className={`modal__profile-submit ${
+            isFormValid ? "modal__submit_enabled" : "modal__submit_disabled"
+          }`}
+          type="submit"
+          disabled={!isFormValid}
+        >
+          Save changes
         </button>
       </form>
-    </div>
+    </Modal>
   );
 };
 

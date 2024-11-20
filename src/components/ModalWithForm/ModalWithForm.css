@@ -67,6 +67,14 @@
   border-radius: 4%;
 }
 
+.modal__profile-submit {
+  width: 150px;
+  height: 36px;
+  color: #fff;
+  background-color: #0000004d;
+  border: none;
+  border-radius: 4%;
+}
 .modal__error {
   color: red;
   font-size: 14px;
