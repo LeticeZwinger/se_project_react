@@ -48,16 +48,18 @@ function ItemCard({ item, onCardClick }) {
 
   return (
     <li className="card">
-      <h2 className="card__name">{item.name}</h2>
+      <div className="card__header">
+        <h2 className="card__name">{item.name}</h2>
+        <button className={itemLikeButton} onClick={handleLike}>
+          {isLiked ? "" : ""}
+        </button>
+      </div>
       <img
         onClick={handleCardClick}
         className="card__image"
         src={item.imageUrl}
         alt={item.name}
       />
-      <button className={itemLikeButton} onClick={handleLike}>
-        {isLiked ? "" : ""}
-      </button>
     </li>
   );
 }
