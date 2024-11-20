@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Header.css";
+
 import logo from "../../assets/logo.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { useContext } from "react";
@@ -52,16 +53,10 @@ function Header({
           </>
         ) : (
           <>
-            <button
-              className="header__signup"
-              onClick={onRegisterClick} // Use prop from App.jsx
-            >
+            <button className="header__signup" onClick={onRegisterClick}>
               Sign Up
             </button>
-            <button
-              className="header__login"
-              onClick={onLoginClick} // Use prop from App.jsx
-            >
+            <button className="header__login" onClick={onLoginClick}>
               Log In
             </button>
           </>

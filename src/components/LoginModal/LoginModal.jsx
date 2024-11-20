@@ -6,7 +6,7 @@ import { BASE_URL } from "../../utils/auth";
 import "./LoginModal.css";
 import "../RegisterModal/RegisterModal.css";
 
-function LoginModal({ isOpen, onClose }) {
+function LoginModal({ isOpen, onClose, openSignUpModal }) {
   const { setCurrentUser, setIsLoggedIn } = useContext(CurrentUserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -95,7 +95,10 @@ function LoginModal({ isOpen, onClose }) {
           >
             Log In
           </button>
-          <button className="modal__or-signup-btn"> or Sign Up</button>
+          <button className="modal__or-signup-btn" onClick={openSignUpModal}>
+            {" "}
+            or Sign Up
+          </button>
         </div>
         {error && <p className="modal__error">{error}</p>}
       </form>

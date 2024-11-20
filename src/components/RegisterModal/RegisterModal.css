@@ -16,6 +16,7 @@
   color: #0000004d;
   border: none;
   border-radius: 4%;
+  cursor: pointer;
 }
 
 .modal__signup {

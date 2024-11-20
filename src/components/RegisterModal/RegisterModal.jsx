@@ -1,10 +1,11 @@
 import { Modal } from "../Modal/Modal";
 import { useState, useContext, useEffect } from "react";
 import { CurrentUserContext } from "../../Contexts/CurrentUserContext";
+
 import "./RegisterModal.css";
 import "../RegisterModal/RegisterModal.css";
 
-function RegisterModal({ isOpen, onClose }) {
+function RegisterModal({ isOpen, onClose, openLoginModal }) {
   const { setCurrentUser, setIsLoggedIn } = useContext(CurrentUserContext);
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
@@ -147,8 +148,10 @@ function RegisterModal({ isOpen, onClose }) {
         >
           Sign Up
         </button>
-        {/* todo pass ONCLICk */}
-        <button className="modal__or-signin-btn">or sign in</button>
+        {/* TO DO: pass onClick{ openSignUpModal}*/}
+        <button className="modal__or-signin-btn" onClick={openLoginModal}>
+          or Log in
+        </button>
       </div>
 
       {error && <p className="modal__error">{error}</p>}

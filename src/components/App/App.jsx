@@ -35,7 +35,7 @@ function App() {
     temp: { F: 999 },
     location: "",
   });
-  const [activeModal, setActiveModal] = useState(""); // Manage all modals with this state
+  const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [clothesItem, setClothesItem] = useState([]);
   const [selectedOption, setSelectedOption] = useState("");
@@ -238,6 +238,7 @@ function App() {
             isOpen={activeModal === "log in"}
             onClose={closeActiveModal}
             onLogin={handleLogin}
+            openSignUpModal={openSignUpModal}
           />
         )}
 
@@ -246,6 +247,7 @@ function App() {
             isOpen={activeModal === "sign up"}
             onClose={closeActiveModal}
             onRegister={handleRegister}
+            openLoginModal={openLoginModal}
           />
         )}
 

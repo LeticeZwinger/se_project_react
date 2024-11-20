@@ -15,7 +15,7 @@
   color: #0000004d;
   border: none;
   border-radius: 4%;
-  order: 1;
+  cursor: pointer;
 }
 
 .modal__login {
