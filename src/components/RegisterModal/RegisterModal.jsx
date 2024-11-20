@@ -1,6 +1,8 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useState, useContext } from "react";
+import { Modal } from "../Modal/Modal";
+import { useState, useContext, useEffect } from "react";
 import { CurrentUserContext } from "../../Contexts/CurrentUserContext";
+import "./RegisterModal.css";
 
 function RegisterModal({ isOpen, onClose }) {
   const { setCurrentUser, setIsLoggedIn } = useContext(CurrentUserContext);
@@ -9,6 +11,15 @@ function RegisterModal({ isOpen, onClose }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const [isValid, setIsValid] = useState(false);
+
+  useEffect(() => {
+    const emailValid = email.includes("@") && email.includes(".");
+    const nameValid = name.trim() !== "";
+    const avatarValid = avatar.trim() !== "";
+    setIsValid(emailValid && nameValid && avatarValid);
+  }, [email, name, avatar]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,59 +79,79 @@ function RegisterModal({ isOpen, onClose }) {
   };
 
   return (
-    <ModalWithForm
+    <Modal
       title="Sign Up"
       buttonText="Sign Up"
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      containerClassName="modal__container-signup"
     >
+      <h2 className="modal__title">Sign Up</h2>
       <label className="modal__label">
-        Name
-        <input
-          type="text"
-          name="name"
-          className="modal__input"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-      </label>
-      <label className="modal__label">
-        Avatar URL
-        <input
-          type="url"
-          name="avatar"
-          className="modal__input"
-          value={avatar}
-          onChange={(e) => setAvatar(e.target.value)}
-          required
-        />
-      </label>
-      <label className="modal__label">
-        Email
+        Email *
         <input
           type="email"
           name="email"
-          className="modal__input"
+          className="modal__input_signup"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)} // Updates state and triggers validation.
           required
+          placeholder="Email"
         />
       </label>
       <label className="modal__label">
-        Password
+        Password *
         <input
           type="password"
           name="password"
-          className="modal__input"
+          className="modal__input_signup"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)} // Updates state but no validation here.
           required
+          placeholder="Password"
         />
       </label>
+      <label className="modal__label">
+        Name *
+        <input
+          type="text"
+          name="name"
+          className="modal__input_signup"
+          value={name}
+          onChange={(e) => setName(e.target.value)} // Updates state and triggers validation.
+          required
+          placeholder="Name"
+        />
+      </label>
+      <label className="modal__label">
+        Avatar URL *
+        <input
+          type="url"
+          name="avatar"
+          className="modal__input_signup"
+          value={avatar}
+          onChange={(e) => setAvatar(e.target.value)} // Updates state and triggers validation.
+          required
+          placeholder="Avatar URL"
+        />
+      </label>
+      <div className="modal__signup">
+        <button
+          type="submit"
+          className={`modal__submit ${
+            isValid ? "modal__submit_enabled" : "modal__submit_disabled"
+          }`} // Dynamic styling based on `isValid`.
+          disabled={!isValid} // Button is disabled unless all fields are valid.
+          onClick={handleSubmit}
+        >
+          Sign Up
+        </button>
+        <button className="modal__or-signin-btn">or sign in</button>
+      </div>
+
       {error && <p className="modal__error">{error}</p>}
-    </ModalWithForm>
+    </Modal>
   );
 }
 

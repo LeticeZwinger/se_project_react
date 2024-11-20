@@ -1,0 +1,25 @@
+.modal__container_login {
+  background-color: #fff;
+  position: relative;
+  width: 496px;
+  height: 304px;
+  border-radius: 12px;
+  padding: 28px;
+  box-sizing: border-box;
+}
+
+.modal__or-signup-btn {
+  width: 124px;
+  height: 36px;
+  background-color: #fff;
+  color: #0000004d;
+  border: none;
+  border-radius: 4%;
+  order: 1;
+}
+
+.modal__login {
+  display: flex;
+  margin-top: 20px;
+  flex-direction: row;
+}
