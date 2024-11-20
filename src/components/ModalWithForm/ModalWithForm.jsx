@@ -17,7 +17,13 @@ function ModalWithForm({
       containerClassName="modal__container_form"
     >
       <h2 className="modal__title">{title}</h2>
-      <form action="" className="modal__form" onSubmit={onSubmit}>
+      <form
+        action=""
+        className="modal__form"
+        onSubmit={(e) => {
+          onSubmit(e);
+        }}
+      >
         {children}
         <button type="submit" className="modal__submit">
           {buttonText}

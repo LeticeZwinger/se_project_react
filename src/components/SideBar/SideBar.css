@@ -1,0 +1,12 @@
+.sidebar {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 24px;
+}
+
+.sidebar__avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  margin-right: 8px;
+}

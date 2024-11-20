@@ -23,7 +23,7 @@ const AddItemModal = ({
       ...prevValues,
       selectedWeather: e.target.id,
     }));
-    handleOptionChange(e);
+    // handleOptionChange(e);
   };
 
   const handleSubmitBtn = (e) => {

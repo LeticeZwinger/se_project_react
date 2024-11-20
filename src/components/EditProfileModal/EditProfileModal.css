@@ -1,1 +1,9 @@
-
+.modal__container_edit-profile {
+  background-color: #fff;
+  position: relative;
+  width: 496px;
+  height: 304px;
+  border-radius: 12px;
+  padding: 28px;
+  box-sizing: border-box;
+}

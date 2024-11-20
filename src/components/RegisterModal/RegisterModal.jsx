@@ -1,8 +1,8 @@
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { Modal } from "../Modal/Modal";
 import { useState, useContext, useEffect } from "react";
 import { CurrentUserContext } from "../../Contexts/CurrentUserContext";
 import "./RegisterModal.css";
+import "../RegisterModal/RegisterModal.css";
 
 function RegisterModal({ isOpen, onClose }) {
   const { setCurrentUser, setIsLoggedIn } = useContext(CurrentUserContext);
@@ -95,7 +95,7 @@ function RegisterModal({ isOpen, onClose }) {
           name="email"
           className="modal__input_signup"
           value={email}
-          onChange={(e) => setEmail(e.target.value)} // Updates state and triggers validation.
+          onChange={(e) => setEmail(e.target.value)}
           required
           placeholder="Email"
         />
@@ -107,7 +107,7 @@ function RegisterModal({ isOpen, onClose }) {
           name="password"
           className="modal__input_signup"
           value={password}
-          onChange={(e) => setPassword(e.target.value)} // Updates state but no validation here.
+          onChange={(e) => setPassword(e.target.value)}
           required
           placeholder="Password"
         />
@@ -119,7 +119,7 @@ function RegisterModal({ isOpen, onClose }) {
           name="name"
           className="modal__input_signup"
           value={name}
-          onChange={(e) => setName(e.target.value)} // Updates state and triggers validation.
+          onChange={(e) => setName(e.target.value)}
           required
           placeholder="Name"
         />
@@ -131,7 +131,7 @@ function RegisterModal({ isOpen, onClose }) {
           name="avatar"
           className="modal__input_signup"
           value={avatar}
-          onChange={(e) => setAvatar(e.target.value)} // Updates state and triggers validation.
+          onChange={(e) => setAvatar(e.target.value)}
           required
           placeholder="Avatar URL"
         />
@@ -141,12 +141,13 @@ function RegisterModal({ isOpen, onClose }) {
           type="submit"
           className={`modal__submit ${
             isValid ? "modal__submit_enabled" : "modal__submit_disabled"
-          }`} // Dynamic styling based on `isValid`.
-          disabled={!isValid} // Button is disabled unless all fields are valid.
+          }`}
+          disabled={!isValid}
           onClick={handleSubmit}
         >
           Sign Up
         </button>
+        {/* todo pass ONCLICk */}
         <button className="modal__or-signin-btn">or sign in</button>
       </div>
 

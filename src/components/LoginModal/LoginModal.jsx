@@ -4,12 +4,20 @@ import { Modal } from "../Modal/Modal";
 import { CurrentUserContext } from "../../Contexts/CurrentUserContext";
 import { BASE_URL } from "../../utils/auth";
 import "./LoginModal.css";
+import "../RegisterModal/RegisterModal.css";
 
 function LoginModal({ isOpen, onClose }) {
   const { setCurrentUser, setIsLoggedIn } = useContext(CurrentUserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isValid, setIsValid] = useState(false);
+
+  useEffect(() => {
+    const emailValid = email.includes("@") && email.includes(".");
+    const passwordValid = password.trim() !== "";
+    setIsValid(emailValid && passwordValid);
+  }, [email, password]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -78,10 +86,15 @@ function LoginModal({ isOpen, onClose }) {
           />
         </label>
         <div className="modal__login">
-          <button type="submit" className="modal__submit">
+          <button
+            type="submit"
+            className={`modal__submit ${
+              isValid ? "modal__submit_enabled" : "modal__submit_disabled"
+            }`}
+            disabled={!isValid}
+          >
             Log In
           </button>
-
           <button className="modal__or-signup-btn"> or Sign Up</button>
         </div>
         {error && <p className="modal__error">{error}</p>}

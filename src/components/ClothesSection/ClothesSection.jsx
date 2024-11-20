@@ -2,11 +2,11 @@ import ItemCard from "../ItemCard/ItemCard";
 
 function ClothesSection({ handleCardClick, clothesItems, handleAddClick }) {
   return (
-    <div className="clothes-section">
-      <div className="section__title_btn">
-        <p>Your items</p>
+    <div>
+      <div className="profile__clothes-section">
+        <p className="profile__clothes-section-title">Your items</p>
         <button
-          className="header__add-clothes-btn"
+          className="profile__add-clothes-btn"
           type="button"
           onClick={handleAddClick}
         >

@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { CurrentUserContext } from "../../Contexts/CurrentUserContext";
-
+import Modal from "../ModalWithForm/ModalWithForm";
+import "./EditProfileModal.css";
 const EditProfileModal = ({ isOpen, onClose, onUpdateProfile }) => {
   const { currentUser } = useContext(CurrentUserContext);
   const [name, setName] = useState("");
@@ -21,6 +22,11 @@ const EditProfileModal = ({ isOpen, onClose, onUpdateProfile }) => {
   if (!isOpen) return null;
 
   return (
+    // name="form"
+    // isOpen={isOpen}
+    // onClose={onClose}
+    // containerClassName="modal__container_edit-profile"
+    // >
     <div className=" modal">
       <form className="modal__form" onSubmit={handleSubmit}>
         <label className="modal__label">
