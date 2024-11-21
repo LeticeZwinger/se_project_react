@@ -4,7 +4,7 @@ import App from "./components/App/App";
 import "./index.css";
 import { BrowserRouter, HashRouter } from "react-router-dom";
 import { CurrentTempUnitProvider } from "./Contexts/CurrentTempUnitContext";
-import { CurrentUserProvider } from "./Contexts/CurrentUserContext";
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <CurrentTempUnitProvider>

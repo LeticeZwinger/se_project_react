@@ -14,6 +14,8 @@ const AddItemModal = ({
     selectedWeather: "",
   });
 
+  const [isFormValid, setIsFormValid] = useState(false);
+
   const handleResetForm = () => {
     setValues({ name: "", link: "", selectedWeather: "" });
   };
@@ -25,6 +27,13 @@ const AddItemModal = ({
     }));
   };
 
+  const validateForm = () => {
+    const isValidName = values.name.trim().length > 0;
+    const isValidUrl = values.link.trim().startsWith("http");
+    const isValidWeather = values.selectedWeather.length > 0;
+    setIsFormValid(isValidName && isValidUrl && isValidWeather);
+  };
+
   const handleSubmitBtn = (e) => {
     e.preventDefault();
     const data = {
@@ -32,8 +41,13 @@ const AddItemModal = ({
       imageURL: values.link,
       selectedWeather: values.selectedWeather,
     };
-    handleAddItem(data);
+    if (isFormValid) {
+      handleAddItem(data);
+    }
   };
+  useEffect(() => {
+    validateForm();
+  }, [values]);
 
   useEffect(() => {
     if (isOpen) {
@@ -44,10 +58,11 @@ const AddItemModal = ({
   return (
     <ModalWithForm
       title="New Garment"
-      buttonText="Add garment"
+      buttonText="Add Garment"
       isOpen={isOpen}
       onClose={handleCloseClick}
       onSubmit={handleSubmitBtn}
+      isFormValid={isFormValid}
     >
       <label htmlFor="name" className="modal__label">
         Name
