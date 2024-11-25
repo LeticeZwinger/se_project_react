@@ -1,4 +1,4 @@
-const baseUrl = "http://0.0.0.0:3001";
+import { BASE_URL } from "./auth";
 
 export const getWeather = ({ latitude, longitude }, APIkey) => {
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`;
@@ -6,12 +6,12 @@ export const getWeather = ({ latitude, longitude }, APIkey) => {
 };
 
 export const getItems = () => {
-  return request(`${baseUrl}/items`);
+  return request(`${BASE_URL}/items`);
 };
 
 export const addItem = (name, imageUrl, weather) => {
   const token = localStorage.getItem("jwt");
-  return request(`${baseUrl}/items`, {
+  return request(`${BASE_URL}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -27,7 +27,7 @@ export const addItem = (name, imageUrl, weather) => {
 
 export const deleteItem = (itemId) => {
   const token = localStorage.getItem("jwt");
-  return request(`${baseUrl}/items/${itemId}`, {
+  return request(`${BASE_URL}/items/${itemId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -37,7 +37,7 @@ export const deleteItem = (itemId) => {
 };
 
 export const addCardLike = (id, token) => {
-  return request(`${baseUrl}/items/${id}/likes`, {
+  return request(`${BASE_URL}/items/${id}/likes`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export const addCardLike = (id, token) => {
 };
 
 export const removeCardLike = (id, token) => {
-  return request(`${baseUrl}/items/${id}/likes`, {
+  return request(`${BASE_URL}/items/${id}/likes`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

@@ -1,6 +1,7 @@
 import { Modal } from "../Modal/Modal";
 import { useState, useContext, useEffect } from "react";
 import { CurrentUserContext } from "../../Contexts/CurrentUserContext";
+import { BASE_URL } from "../../utils/auth";
 
 import "./RegisterModal.css";
 import "../RegisterModal/RegisterModal.css";
@@ -25,7 +26,7 @@ function RegisterModal({ isOpen, onClose, openLoginModal }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
-    fetch("http://0.0.0.0:3001/signup", {
+    fetch(`${BASE_URL}/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +47,7 @@ function RegisterModal({ isOpen, onClose, openLoginModal }) {
         });
       })
       .then(() => {
-        return fetch("http://0.0.0.0:3001/signin", {
+        return fetch(`${BASE_URL}/signin`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -62,7 +63,7 @@ function RegisterModal({ isOpen, onClose, openLoginModal }) {
       })
       .then((data) => {
         localStorage.setItem("jwt", data.token);
-        return fetch("http://0.0.0.0:3001/users/me", {
+        return fetch(`${BASE_URL}/users/me`, {
           headers: {
             Authorization: `Bearer ${data.token}`,
           },

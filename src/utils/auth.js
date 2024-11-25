@@ -1,4 +1,4 @@
-export const BASE_URL = "http://0.0.0.0:3001";
+export const BASE_URL = "http://localhost:3001";
 
 export const registerUser = async ({ name, avatar, email, password }) => {
   const response = await fetch(`${BASE_URL}/signup`, {
