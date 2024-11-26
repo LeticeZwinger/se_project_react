@@ -58,9 +58,12 @@ function App() {
 
   useEffect(() => {
     getItems()
-      .then((items) => setClothesItem(items))
+      .then((items) => {
+        console.log("items", items);
+        setClothesItem(items);
+      })
       .catch(console.error);
-  }, []);
+  }, [currentUser]);
 
   useEffect(() => {
     getWeather(coordinates, APIkey)

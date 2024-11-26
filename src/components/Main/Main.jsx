@@ -17,20 +17,18 @@ function Main({ weatherData, handleCardClick, clothesItem, onCardLike }) {
           Today is {toConvert(weatherData.temp.F)} &deg; {currentTempUnit} / You
           may want to wear:
         </p>
-        {isLoggedIn && (
-          <ul className="cards__list">
-            {clothesItem
-              .filter((item) => item.weather === weatherData.type)
-              .map((item) => (
-                <ItemCard
-                  key={item._id}
-                  item={item}
-                  onCardClick={handleCardClick}
-                  onCardLike={onCardLike}
-                />
-              ))}
-          </ul>
-        )}
+        <ul className="cards__list">
+          {clothesItem
+            .filter((item) => item.weather === weatherData.type)
+            .map((item) => (
+              <ItemCard
+                key={item._id}
+                item={item}
+                onCardClick={handleCardClick}
+                onCardLike={onCardLike}
+              />
+            ))}
+        </ul>
       </section>
     </main>
   );

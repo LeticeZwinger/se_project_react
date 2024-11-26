@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { CurrentUserContext } from "../../Contexts/CurrentUserContext";
 import { BASE_URL } from "../../utils/auth";
 
-function ItemCard({ item, onCardClick }) {
+function ItemCard({ item, onCardClick, profile }) {
   const { currentUser } = useContext(CurrentUserContext);
   const [likes, setLikes] = useState(item.likes);
 
@@ -50,9 +50,11 @@ function ItemCard({ item, onCardClick }) {
     <li className="card">
       <div className="card__header">
         <h2 className="card__name">{item.name}</h2>
-        <button className={itemLikeButton} onClick={handleLike}>
-          {isLiked ? "" : ""}
-        </button>
+        {!profile && (
+          <button className={itemLikeButton} onClick={handleLike}>
+            {isLiked ? "" : ""}
+          </button>
+        )}
       </div>
       <img
         onClick={handleCardClick}

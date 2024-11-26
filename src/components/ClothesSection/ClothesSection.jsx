@@ -1,6 +1,11 @@
 import ItemCard from "../ItemCard/ItemCard";
 
-function ClothesSection({ handleCardClick, clothesItems, handleAddClick }) {
+function ClothesSection({
+  handleCardClick,
+  clothesItems,
+  handleAddClick,
+  profile = false,
+}) {
   return (
     <div>
       <div className="profile__clothes-section">
@@ -15,7 +20,12 @@ function ClothesSection({ handleCardClick, clothesItems, handleAddClick }) {
       </div>
       <ul className="clothes-section__items cards__list">
         {clothesItems.map((item) => (
-          <ItemCard key={item._id} item={item} onCardClick={handleCardClick} />
+          <ItemCard
+            key={item._id}
+            item={item}
+            onCardClick={handleCardClick}
+            profile={profile}
+          />
         ))}
       </ul>
     </div>

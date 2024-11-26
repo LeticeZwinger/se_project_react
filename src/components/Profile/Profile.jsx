@@ -16,29 +16,19 @@ function Profile({
   const { currentUser, setCurrentUser, isLoggedIn, setIsLoggedIn } =
     useContext(CurrentUserContext);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [clothingItems, setClothingItems] = useState([]);
-  useEffect(() => {
-    if (isLoggedIn && currentUser) {
-      fetch(`${BASE_URL}/items?userId=${currentUser._id}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => setClothingItems(data.items))
-        .catch((err) => console.error("Failed to fetch user items", err));
-    }
-  }, [isLoggedIn, currentUser]);
 
   const openEditModal = () => setIsEditModalOpen(true);
   const closeEditModal = () => setIsEditModalOpen(false);
   const navigate = useNavigate();
 
+  const clothesItemsByUserId = clothingItems.filter(
+    (item) => item.owner.toString() === currentUser._id.toString(),
+  );
   const handleLogout = () => {
     setIsLoggedIn(false);
     localStorage.removeItem("jwt");
     setCurrentUser(null);
-    setClothingItems([]);
+
     navigate("/");
   };
 
@@ -56,8 +46,9 @@ function Profile({
       <section className="profile__clothes-items">
         <ClothesSection
           handleCardClick={handleCardClick}
-          clothesItems={clothingItems}
+          clothesItems={clothesItemsByUserId}
           handleAddClick={handleAddClick}
+          profile={true}
         />
       </section>
       <EditProfileModal
