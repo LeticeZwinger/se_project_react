@@ -1,26 +1,26 @@
 import { useState, useContext, useEffect } from "react";
-
-import { Modal } from "../Modal/Modal";
 import { CurrentUserContext } from "../../Contexts/CurrentUserContext";
 import { BASE_URL } from "../../utils/auth";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+
 import "./LoginModal.css";
-import "../RegisterModal/RegisterModal.css";
 
 function LoginModal({ isOpen, onClose, openSignUpModal }) {
   const { setCurrentUser, setIsLoggedIn } = useContext(CurrentUserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [isValid, setIsValid] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
     const emailValid = email.includes("@") && email.includes(".");
     const passwordValid = password.trim() !== "";
-    setIsValid(emailValid && passwordValid);
+    setIsFormValid(emailValid && passwordValid);
   }, [email, password]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError("");
     fetch(`${BASE_URL}/signin`, {
       method: "POST",
       headers: {
@@ -54,55 +54,43 @@ function LoginModal({ isOpen, onClose, openSignUpModal }) {
   };
 
   return (
-    <Modal
+    <ModalWithForm
+      title="Log In"
+      buttonText="Log In"
       isOpen={isOpen}
       onClose={onClose}
-      containerClassName="modal__container_login"
+      onSubmit={handleSubmit}
+      isFormValid={isFormValid}
+      errorMessage={error}
     >
-      <h2 className="modal__title">Log In</h2>
-      <form className="modal__form" onSubmit={handleSubmit}>
-        <label className="modal__label">
-          Email
-          <input
-            type="email"
-            name="email"
-            className="modal__input"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            placeholder="Email"
-          />
-        </label>
-        <label className="modal__label">
-          Password
-          <input
-            type="password"
-            name="password"
-            className="modal__input"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            placeholder="Password"
-          />
-        </label>
-        <div className="modal__login">
-          <button
-            type="submit"
-            className={`modal__submit ${
-              isValid ? "modal__submit_enabled" : "modal__submit_disabled"
-            }`}
-            disabled={!isValid}
-          >
-            Log In
-          </button>
-          <button className="modal__or-signup-btn" onClick={openSignUpModal}>
-            {" "}
-            or Sign Up
-          </button>
-        </div>
-        {error && <p className="modal__error">{error}</p>}
-      </form>
-    </Modal>
+      <label className="modal__label">
+        Email
+        <input
+          type="email"
+          name="email"
+          className="modal__input"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          placeholder="Email"
+        />
+      </label>
+      <label className="modal__label">
+        Password
+        <input
+          type="password"
+          name="password"
+          className="modal__input"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          placeholder="Password"
+        />
+      </label>
+      <button className="modal__or-signup-btn" onClick={openSignUpModal}>
+        or Sign Up
+      </button>
+    </ModalWithForm>
   );
 }
 

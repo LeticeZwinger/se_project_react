@@ -1,7 +1,7 @@
 import "./ItemModal.css";
 import { Modal } from "../Modal/Modal";
 
-function ItemModal({ activeModal, onClose, deleteItem, card }) {
+function ItemModal({ activeModal, onClose, deleteItem, card, currentUser }) {
   return (
     <>
       {activeModal === "preview" && (
@@ -24,13 +24,15 @@ function ItemModal({ activeModal, onClose, deleteItem, card }) {
               <p className="modal__weather">Weather: {card.weather}</p>
             </div>
 
-            <button
-              onClick={deleteItem}
-              type="button"
-              className="modal__delete-button"
-            >
-              Delete item
-            </button>
+            {currentUser && (
+              <button
+                onClick={deleteItem}
+                type="button"
+                className="modal__delete-button"
+              >
+                Delete item
+              </button>
+            )}
           </div>
         </Modal>
       )}

@@ -1,10 +1,9 @@
-import { Modal } from "../Modal/Modal";
 import { useState, useContext, useEffect } from "react";
 import { CurrentUserContext } from "../../Contexts/CurrentUserContext";
 import { BASE_URL } from "../../utils/auth";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 import "./RegisterModal.css";
-import "../RegisterModal/RegisterModal.css";
 
 function RegisterModal({ isOpen, onClose, openLoginModal }) {
   const { setCurrentUser, setIsLoggedIn } = useContext(CurrentUserContext);
@@ -14,13 +13,13 @@ function RegisterModal({ isOpen, onClose, openLoginModal }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const [isValid, setIsValid] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
     const emailValid = email.includes("@") && email.includes(".");
     const nameValid = name.trim() !== "";
     const avatarValid = avatar.trim() !== "";
-    setIsValid(emailValid && nameValid && avatarValid);
+    setIsFormValid(emailValid && nameValid && avatarValid);
   }, [email, name, avatar]);
 
   const handleSubmit = (e) => {
@@ -81,15 +80,15 @@ function RegisterModal({ isOpen, onClose, openLoginModal }) {
   };
 
   return (
-    <Modal
+    <ModalWithForm
       title="Sign Up"
       buttonText="Sign Up"
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      containerClassName="modal__container-signup"
+      isFormValid={isFormValid}
+      errorMessage={error}
     >
-      <h2 className="modal__title">Sign Up</h2>
       <label className="modal__label">
         Email *
         <input
@@ -138,25 +137,10 @@ function RegisterModal({ isOpen, onClose, openLoginModal }) {
           placeholder="Avatar URL"
         />
       </label>
-      <div className="modal__signup">
-        <button
-          type="submit"
-          className={`modal__submit ${
-            isValid ? "modal__submit_enabled" : "modal__submit_disabled"
-          }`}
-          disabled={!isValid}
-          onClick={handleSubmit}
-        >
-          Sign Up
-        </button>
-        {/* TO DO: pass onClick{ openSignUpModal}*/}
-        <button className="modal__or-signin-btn" onClick={openLoginModal}>
-          or Log in
-        </button>
-      </div>
-
-      {error && <p className="modal__error">{error}</p>}
-    </Modal>
+      <button className="modal__or-signin-btn" onClick={openLoginModal}>
+        or Log in
+      </button>
+    </ModalWithForm>
   );
 }
 

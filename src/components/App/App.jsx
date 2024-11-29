@@ -95,6 +95,36 @@ function App() {
     setActiveModal("sign up");
   };
 
+  const handleGetItems = () => {
+    getItems()
+      .then((items) => setClothesItem(items))
+      .catch((err) => console.error("Failed to fetch items:", err));
+  };
+
+  const handleAddItem = (data) => {
+    addItem(data.name, data.imageURL, data.selectedWeather)
+      .then(() => handleGetItems())
+      .catch((err) => console.error("Failed to add item:", err));
+  };
+
+  const handleDeleteItem = (itemId) => {
+    deleteItem(itemId)
+      .then(() => handleGetItems())
+      .catch((err) => console.error("Failed to delete item:", err));
+  };
+
+  const handleUpdateLike = (itemId, isLiked) => {
+    updateLikeStatus(itemId, isLiked)
+      .then((updatedItem) => {
+        setClothesItem((prevItems) =>
+          prevItems.map((item) =>
+            item._id === updatedItem._id ? updatedItem : item,
+          ),
+        );
+      })
+      .catch((err) => console.error("Failed to update like status:", err));
+  };
+
   const handleRegister = async ({ name, avatar, email, password }) => {
     try {
       const data = await registerUser({ name, avatar, email, password });
@@ -151,6 +181,7 @@ function App() {
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
                   clothesItem={clothesItem}
+                  onLike={handleUpdateLike}
                 />
               }
             />
@@ -162,30 +193,8 @@ function App() {
                     handleCardClick={handleCardClick}
                     clothingItems={clothesItem}
                     handleAddClick={handleAddClick}
-                    onDeleteItem={(itemId) => {
-                      deleteItem(itemId)
-                        .then(() => {
-                          setClothesItem((clothesItem) =>
-                            clothesItem.filter(
-                              (clothes) => clothes._id !== itemId,
-                            ),
-                          );
-                          closeActiveModal();
-                        })
-                        .catch(console.error);
-                    }}
-                    handleUpdateProfile={async (updatedData) => {
-                      const token = localStorage.getItem("jwt");
-                      try {
-                        const updatedUser = await updateUserProfile(
-                          token,
-                          updatedData,
-                        );
-                        setCurrentUser(updatedUser);
-                      } catch (error) {
-                        console.error("Failed to update profile:", error);
-                      }
-                    }}
+                    onDeleteItem={handleDeleteItem}
+                    // handleUpdateProfile={handleUpdateProfile} // TODO A FUNCTION FOR UPDATE PROFILE
                   />
                 ) : (
                   <Navigate to="/" replace />
@@ -199,14 +208,7 @@ function App() {
           <AddItemModal
             isOpen={activeModal === "add-garment"}
             handleCloseClick={closeActiveModal}
-            handleAddItem={(data) => {
-              addItem(data.name, data.imageURL, data.selectedWeather)
-                .then((newItem) => {
-                  setClothesItem((prevItems) => [newItem, ...prevItems]);
-                  closeActiveModal();
-                })
-                .catch(console.error);
-            }}
+            handleAddItem={handleAddItem}
           />
         )}
 
@@ -222,16 +224,7 @@ function App() {
         {activeModal === "delete" && (
           <DeleteModal
             item={selectedCard._id}
-            handleDeleteItem={(itemId) => {
-              deleteItem(itemId)
-                .then(() => {
-                  setClothesItem((clothesItem) =>
-                    clothesItem.filter((clothes) => clothes._id !== itemId),
-                  );
-                  closeActiveModal();
-                })
-                .catch(console.error);
-            }}
+            handleDeleteItem={handleDeleteItem}
             handleDeleteClose={closeActiveModal}
           />
         )}
