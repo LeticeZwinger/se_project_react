@@ -50,11 +50,9 @@ function ItemCard({ item, onCardClick, profile }) {
     <li className="card">
       <div className="card__header">
         <h2 className="card__name">{item.name}</h2>
-        {!profile && (
-          <button className={itemLikeButton} onClick={handleLike}>
-            {isLiked ? "" : ""}
-          </button>
-        )}
+        <button className={itemLikeButton} onClick={handleLike}>
+          {isLiked ? "" : ""}
+        </button>
       </div>
       <img
         onClick={handleCardClick}
