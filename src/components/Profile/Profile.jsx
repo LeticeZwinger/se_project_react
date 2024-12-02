@@ -51,11 +51,13 @@ function Profile({
           profile={true}
         />
       </section>
-      <EditProfileModal
-        isOpen={isEditModalOpen}
-        onClose={closeEditModal}
-        onUpdateProfile={handleUpdateProfile}
-      />
+      {isEditModalOpen && (
+        <EditProfileModal
+          isOpen={!isEditModalOpen}
+          onClose={closeEditModal}
+          onUpdateProfile={handleUpdateProfile}
+        />
+      )}
     </div>
   );
 }

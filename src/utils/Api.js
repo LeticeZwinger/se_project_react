@@ -1,6 +1,5 @@
-export const BASE_URL = "your-base-url-here";
+import { BASE_URL } from "./auth";
 
-// Helper function to check response
 const checkResponse = (res) => {
   if (!res.ok) {
     return res.json().then((err) => {
@@ -10,7 +9,6 @@ const checkResponse = (res) => {
   return res.json();
 };
 
-// Fetch all items
 export const getItems = () => {
   return fetch(`${BASE_URL}/items`, {
     headers: {
@@ -19,7 +17,6 @@ export const getItems = () => {
   }).then(checkResponse);
 };
 
-// Add a new item
 export const addItem = (name, imageURL, weatherType) => {
   return fetch(`${BASE_URL}/items`, {
     method: "POST",
@@ -31,7 +28,6 @@ export const addItem = (name, imageURL, weatherType) => {
   }).then(checkResponse);
 };
 
-// Delete an item
 export const deleteItem = (itemId) => {
   return fetch(`${BASE_URL}/items/${itemId}`, {
     method: "DELETE",
@@ -41,7 +37,7 @@ export const deleteItem = (itemId) => {
   }).then(checkResponse);
 };
 
-// handleUpdateProfile={async (updatedData) => {
+//  handleUpdateProfile={async (updatedData) => {
 //     const token = localStorage.getItem("jwt");
 //     try {
 //       const updatedUser = await updateUserProfile(

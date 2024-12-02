@@ -28,6 +28,7 @@ import {
   CurrentUserContext,
 } from "../../Contexts/CurrentUserContext";
 import LoginModal from "../LoginModal/LoginModal";
+import { updateLikeStatus } from "../../utils/Api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
