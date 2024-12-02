@@ -12,6 +12,7 @@ function Profile({
   clothingItems,
   handleAddClick,
   handleUpdateProfile,
+  onLike,
 }) {
   const { currentUser, setCurrentUser, isLoggedIn, setIsLoggedIn } =
     useContext(CurrentUserContext);
@@ -48,6 +49,7 @@ function Profile({
           handleCardClick={handleCardClick}
           clothesItems={clothesItemsByUserId}
           handleAddClick={handleAddClick}
+          onLike={onLike}
           profile={true}
         />
       </section>

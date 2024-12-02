@@ -4,6 +4,7 @@ function ClothesSection({
   handleCardClick,
   clothesItems,
   handleAddClick,
+  onLike,
   profile = false,
 }) {
   return (
@@ -24,6 +25,7 @@ function ClothesSection({
             key={item._id}
             item={item}
             onCardClick={handleCardClick}
+            onLike={onLike}
             profile={profile}
           />
         ))}

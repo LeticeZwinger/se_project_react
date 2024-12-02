@@ -196,6 +196,7 @@ function App() {
                     handleAddClick={handleAddClick}
                     onDeleteItem={handleDeleteItem}
                     // handleUpdateProfile={handleUpdateProfile} // TODO A FUNCTION FOR UPDATE PROFILE
+                    onLike={handleUpdateLike}
                   />
                 ) : (
                   <Navigate to="/" replace />
