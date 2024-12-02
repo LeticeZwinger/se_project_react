@@ -7,6 +7,7 @@ export const Modal = ({
   children,
   isOpen,
   containerClassName,
+  loading,
 }) => {
   useEffect(() => {
     const handleEscape = (e) => {
@@ -36,6 +37,7 @@ export const Modal = ({
       onClick={handleOverlay}
     >
       <div className={`modal__container ${containerClassName}`}>
+        {loading && <div className="modal__loading">Loading...</div>}
         {children}
         <button
           className="modal__close-button"

@@ -15,6 +15,7 @@ const AddItemModal = ({
   });
 
   const [isFormValid, setIsFormValid] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleResetForm = () => {
     setValues({ name: "", link: "", selectedWeather: "" });
@@ -34,17 +35,27 @@ const AddItemModal = ({
     setIsFormValid(isValidName && isValidUrl && isValidWeather);
   };
 
-  const handleSubmitBtn = (e) => {
+  const handleSubmitBtn = async (e) => {
     e.preventDefault();
     const data = {
       name: values.name,
       imageURL: values.link,
       selectedWeather: values.selectedWeather,
     };
+
     if (isFormValid) {
-      handleAddItem(data);
+      setLoading(true);
+      try {
+        await handleAddItem(data);
+        handleCloseClick();
+      } catch (error) {
+        console.error("Failed to add item:", error);
+      } finally {
+        setLoading(false);
+      }
     }
   };
+
   useEffect(() => {
     validateForm();
   }, [values]);
@@ -58,7 +69,7 @@ const AddItemModal = ({
   return (
     <ModalWithForm
       title="New Garment"
-      buttonText="Add Garment"
+      buttonText={loading ? "Adding..." : "Add Garment"}
       isOpen={isOpen}
       onClose={handleCloseClick}
       onSubmit={handleSubmitBtn}

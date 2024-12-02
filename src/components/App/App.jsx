@@ -40,7 +40,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [clothesItem, setClothesItem] = useState([]);
   const [selectedOption, setSelectedOption] = useState("");
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {

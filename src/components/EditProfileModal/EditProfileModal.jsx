@@ -5,9 +5,10 @@ import "./EditProfileModal.css";
 
 const EditProfileModal = ({ isOpen, onClose, onUpdateProfile }) => {
   const { currentUser } = useContext(CurrentUserContext);
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
+  const [name, setName] = useState(currentUser?.name || "");
+  const [avatar, setAvatar] = useState(currentUser?.avatar || "");
   const [isFormValid, setIsFormValid] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -22,18 +23,25 @@ const EditProfileModal = ({ isOpen, onClose, onUpdateProfile }) => {
     setIsFormValid(isValidName && isValidAvatar);
   }, [name, avatar]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (isFormValid) {
-      onUpdateProfile({ name, avatar });
-      onClose();
+      setLoading(true);
+      try {
+        await onUpdateProfile({ name, avatar });
+        onClose();
+      } catch (error) {
+        console.error("Failed to update profile:", error);
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
   return (
     <ModalWithForm
       title="Change profile data"
-      buttonText="Save changes"
+      buttonText={loading ? "Saving..." : "Save changes"}
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}

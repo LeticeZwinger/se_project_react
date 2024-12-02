@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { CurrentUserContext } from "../../Contexts/CurrentUserContext";
-import { BASE_URL } from "../../utils/auth";
+import { loginUser, getCurrentUser } from "../../utils/auth";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 import "./LoginModal.css";
@@ -11,6 +11,7 @@ function LoginModal({ isOpen, onClose, openSignUpModal }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const emailValid = email.includes("@") && email.includes(".");
@@ -18,45 +19,32 @@ function LoginModal({ isOpen, onClose, openSignUpModal }) {
     setIsFormValid(emailValid && passwordValid);
   }, [email, password]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    fetch(`${BASE_URL}/signin`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    })
-      .then((res) => {
-        if (res.ok) return res.json();
-        return res.json().then((data) => {
-          throw new Error(data.message);
-        });
-      })
-      .then((data) => {
-        localStorage.setItem("jwt", data.token);
-        return fetch(`${BASE_URL}/users/me`, {
-          headers: {
-            Authorization: `Bearer ${data.token}`,
-          },
-        });
-      })
-      .then((res) => res.json())
-      .then((userData) => {
-        setCurrentUser(userData);
-        setIsLoggedIn(true);
-        onClose();
-      })
-      .catch((err) => {
-        setError(err.message);
-      });
+    setLoading(true);
+
+    try {
+      const loginData = await loginUser({ email, password });
+      const token = loginData.token;
+      localStorage.setItem("jwt", token);
+
+      const userData = await getCurrentUser(token);
+      setCurrentUser(userData);
+      setIsLoggedIn(true);
+
+      onClose();
+    } catch (err) {
+      setError(err.message || "Failed to log in.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <ModalWithForm
       title="Log In"
-      buttonText="Log In"
+      buttonText={loading ? "Logging In..." : "Log In"}
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}

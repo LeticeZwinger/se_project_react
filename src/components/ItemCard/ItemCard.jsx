@@ -1,7 +1,6 @@
 import "./ItemCard.css";
 import { useContext, useState } from "react";
 import { CurrentUserContext } from "../../Contexts/CurrentUserContext";
-import { BASE_URL } from "../../utils/auth";
 
 function ItemCard({ item, onCardClick, onLike }) {
   const { currentUser } = useContext(CurrentUserContext);

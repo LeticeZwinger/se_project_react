@@ -1,9 +1,19 @@
+import { useState } from "react";
 import "./DeleteModal.css";
 import { Modal } from "../Modal/Modal";
 
 function DeleteModal({ item, handleDeleteItem, handleDeleteClose, isOpen }) {
-  const deleteCard = () => {
-    handleDeleteItem(item);
+  const [loading, setLoading] = useState(false);
+  const deleteCard = async () => {
+    setLoading(true);
+    try {
+      await handleDeleteItem(item);
+      handleDeleteClose();
+    } catch (error) {
+      console.error("Failed to delete item:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -21,8 +31,9 @@ function DeleteModal({ item, handleDeleteItem, handleDeleteClose, isOpen }) {
         type="submit"
         className="modal__delete-confirmation"
         onClick={deleteCard}
+        disabled={loading}
       >
-        Yes, delete item
+        {loading ? "Deleting..." : "Yes, delete item"}
       </button>
       <button
         type="button"

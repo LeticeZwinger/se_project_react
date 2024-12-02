@@ -56,7 +56,7 @@ export const removeCardLike = (id, token) => {
   });
 };
 
-function checkResponse(res) {
+export function checkResponse(res) {
   if (res.ok) {
     return res.json();
   } else {

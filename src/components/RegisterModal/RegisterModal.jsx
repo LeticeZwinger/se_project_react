@@ -12,6 +12,7 @@ function RegisterModal({ isOpen, onClose, openLoginModal }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const [isFormValid, setIsFormValid] = useState(false);
 
@@ -22,67 +23,35 @@ function RegisterModal({ isOpen, onClose, openLoginModal }) {
     setIsFormValid(emailValid && nameValid && avatarValid);
   }, [email, name, avatar]);
 
-  const handleSubmit = (e) => {
+  //API LOGIC SHOULD GO ON API.JSX >>>>
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    fetch(`${BASE_URL}/signup`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, avatar, email, password }),
-    })
-      .then((res) => {
-        return res.json().then((data) => {
-          if (res.ok) {
-            return data;
-          } else {
-            if (res.status === 409) {
-              throw new Error("An account with this email already exists.");
-            } else {
-              throw new Error(data.message || "Something went wrong.");
-            }
-          }
-        });
-      })
-      .then(() => {
-        return fetch(`${BASE_URL}/signin`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        });
-      })
-      .then((res) => {
-        if (res.ok) return res.json();
-        return res.json().then((data) => {
-          throw new Error(data.message || "Unable to sign in.");
-        });
-      })
-      .then((data) => {
-        localStorage.setItem("jwt", data.token);
-        return fetch(`${BASE_URL}/users/me`, {
-          headers: {
-            Authorization: `Bearer ${data.token}`,
-          },
-        });
-      })
-      .then((res) => res.json())
-      .then((userData) => {
-        setCurrentUser(userData);
-        setIsLoggedIn(true);
-        onClose();
-      })
-      .catch((err) => {
-        setError(err.message);
-      });
+    setLoading(true);
+
+    try {
+      await registerUser({ name, avatar, email, password });
+
+      const loginData = await loginUser({ email, password });
+      const token = loginData.token;
+      localStorage.setItem("jwt", token);
+
+      const userData = await getCurrentUser(token);
+      setCurrentUser(userData);
+      setIsLoggedIn(true);
+
+      onClose();
+    } catch (err) {
+      setError(err.message || "Something went wrong.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <ModalWithForm
       title="Sign Up"
-      buttonText="Sign Up"
+      buttonText={loading ? "Signing Up..." : "Sign Up"}
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
