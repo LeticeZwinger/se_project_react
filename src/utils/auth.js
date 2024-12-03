@@ -13,7 +13,7 @@ export const registerUser = async ({ name, avatar, email, password }) => {
     },
     body: JSON.stringify({ name, avatar, email, password }),
   });
-  //import response from WheaterApi.jsx to not duplicate the code
+
   return checkResponse(response);
 };
 

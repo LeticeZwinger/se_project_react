@@ -28,19 +28,8 @@ function RegisterModal({ isOpen, onClose, openLoginModal }) {
     e.preventDefault();
     setError("");
     setLoading(true);
-
     try {
-      await registerUser({ name, avatar, email, password });
-
-      const loginData = await loginUser({ email, password });
-      const token = loginData.token;
-      localStorage.setItem("jwt", token);
-
-      const userData = await getCurrentUser(token);
-      setCurrentUser(userData);
-      setIsLoggedIn(true);
-
-      onClose();
+      await onRegister({ name, avatar, email, password });
     } catch (err) {
       setError(err.message || "Something went wrong.");
     } finally {

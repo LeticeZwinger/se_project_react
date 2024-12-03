@@ -4,9 +4,10 @@ import useForm from "../../utils/useForms";
 
 const AddItemModal = ({
   handleAddItem,
-  handleCloseClick,
+  onClose,
   isOpen,
   handleOptionChange,
+  closeActiveModal,
 }) => {
   const { values, handleChange, setValues } = useForm({
     name: "",
@@ -71,7 +72,7 @@ const AddItemModal = ({
       title="New Garment"
       buttonText={loading ? "Adding..." : "Add Garment"}
       isOpen={isOpen}
-      onClose={handleCloseClick}
+      onClose={onClose}
       onSubmit={handleSubmitBtn}
       isFormValid={isFormValid}
     >

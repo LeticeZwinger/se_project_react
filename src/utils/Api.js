@@ -10,15 +10,15 @@ import { checkResponse } from "./weatherApi";
 //   return res.json();
 // };
 // this already exist on auth.js / keep there / delete here
-export const registerUser = ({ name, avatar, email, password }) => {
-  return fetch(`${BASE_URL}/signup`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ name, avatar, email, password }),
-  }).then(checkResponse);
-};
+// export const registerUser = ({ name, avatar, email, password }) => {
+//   return fetch(`${BASE_URL}/signup`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({ name, avatar, email, password }),
+//   }).then(checkResponse);
+// };
 
 // this already exist on auth.js / keep there / delete here
 export const loginUser = ({ email, password }) => {

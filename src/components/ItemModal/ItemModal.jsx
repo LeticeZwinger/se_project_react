@@ -5,7 +5,6 @@ import { CurrentUserContext } from "../../Contexts/CurrentUserContext";
 
 function ItemModal({ activeModal, onClose, deleteItem, card }) {
   const { currentUser } = useContext(CurrentUserContext);
-  const [loading, setLoading] = useState(false);
 
   return (
     <>
@@ -21,7 +20,6 @@ function ItemModal({ activeModal, onClose, deleteItem, card }) {
               onClick={onClose}
               type="button"
               className="modal__close-button modal__close-button_item"
-              p
             ></button>
             <img src={card.imageUrl} alt="card" className="modal__image" />
             <div className="modal__footer">

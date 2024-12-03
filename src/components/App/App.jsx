@@ -129,12 +129,15 @@ function App() {
   const handleRegister = async ({ name, avatar, email, password }) => {
     try {
       const data = await registerUser({ name, avatar, email, password });
-      localStorage.setItem("jwt", data.token);
-      setCurrentUser(data.user);
+      const token = data.token;
+      localStorage.setItem("jwt", token);
+      const userData = await getCurrentUser(token);
+      setCurrentUser(userData);
       setIsLoggedIn(true);
       closeActiveModal();
     } catch (error) {
       console.error("Registration error:", error);
+      throw error;
     }
   };
 
@@ -195,6 +198,7 @@ function App() {
                     clothingItems={clothesItem}
                     handleAddClick={handleAddClick}
                     onDeleteItem={handleDeleteItem}
+                    onClose={closeActiveModal}
                     // handleUpdateProfile={handleUpdateProfile} // TODO A FUNCTION FOR UPDATE PROFILE
                     onLike={handleUpdateLike}
                   />
@@ -209,7 +213,7 @@ function App() {
         {activeModal === "add-garment" && (
           <AddItemModal
             isOpen={activeModal === "add-garment"}
-            handleCloseClick={closeActiveModal}
+            onClose={closeActiveModal}
             handleAddItem={handleAddItem}
           />
         )}
