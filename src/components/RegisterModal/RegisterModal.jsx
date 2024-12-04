@@ -45,7 +45,13 @@ function RegisterModal({ isOpen, onClose, openLoginModal }) {
       onClose={onClose}
       onSubmit={handleSubmit}
       isFormValid={isFormValid}
+      containerClassName="modal__container_register"
       errorMessage={error}
+      alternateButton={
+        <button className="modal__or-signin-btn" onClick={openLoginModal}>
+          or Log in
+        </button>
+      }
     >
       <label className="modal__label">
         Email *
@@ -95,9 +101,6 @@ function RegisterModal({ isOpen, onClose, openLoginModal }) {
           placeholder="Avatar URL"
         />
       </label>
-      <button className="modal__or-signin-btn" onClick={openLoginModal}>
-        or Log in
-      </button>
     </ModalWithForm>
   );
 }

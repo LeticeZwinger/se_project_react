@@ -49,14 +49,20 @@ function LoginModal({ isOpen, onClose, openSignUpModal }) {
       onClose={onClose}
       onSubmit={handleSubmit}
       isFormValid={isFormValid}
+      containerClassName="modal__container_login"
       errorMessage={error}
+      alternateButton={
+        <button className="modal__or-signup-btn" onClick={openSignUpModal}>
+          or Sign Up
+        </button>
+      }
     >
       <label className="modal__label">
         Email
         <input
           type="email"
           name="email"
-          className="modal__input"
+          className="modal__input_login"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -68,16 +74,13 @@ function LoginModal({ isOpen, onClose, openSignUpModal }) {
         <input
           type="password"
           name="password"
-          className="modal__input"
+          className="modal__input_login"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
           placeholder="Password"
         />
       </label>
-      <button className="modal__or-signup-btn" onClick={openSignUpModal}>
-        or Sign Up
-      </button>
     </ModalWithForm>
   );
 }

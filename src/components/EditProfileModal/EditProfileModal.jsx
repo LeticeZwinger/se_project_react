@@ -46,6 +46,7 @@ const EditProfileModal = ({ isOpen, onClose, onUpdateProfile }) => {
       onClose={onClose}
       onSubmit={handleSubmit}
       isFormValid={isFormValid}
+      containerClassName="modal__container_edit-profile"
     >
       <label className="modal__label">
         Name:

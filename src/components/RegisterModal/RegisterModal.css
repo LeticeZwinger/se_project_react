@@ -24,6 +24,17 @@
   margin-top: 20px;
 }
 
+.modal__input_login {
+  display: block;
+  width: 440px;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-color: 1px solid #000000;
+  margin-bottom: 30px;
+  border-radius: 4%;
+}
+
 .modal__input_signup {
   display: block;
   width: 440px;
@@ -31,7 +42,7 @@
   border-right: none;
   border-left: none;
   border-color: 1px solid #000000;
-  margin-bottom: 24px;
+  margin-bottom: 30px;
   border-radius: 4%;
 }
 
