@@ -1,26 +1,18 @@
 import { BASE_URL } from "./auth";
 import { checkResponse } from "./weatherApi";
 
-// const checkResponse = (res) => {
-//   if (!res.ok) {
-//     return res.json().then((err) => {
-//       throw new Error(err.message || "Something went wrong");
-//     });
-//   }
-//   return res.json();
-// };
-// this already exist on auth.js / keep there / delete here
-// export const registerUser = ({ name, avatar, email, password }) => {
-//   return fetch(`${BASE_URL}/signup`, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({ name, avatar, email, password }),
-//   }).then(checkResponse);
-// };
-
-// this already exist on auth.js / keep there / delete here
+export const updateUserProfile = async (token, { name, avatar }) => {
+  const response = await fetch(`${BASE_URL}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  });
+  if (!response.ok) throw new Error("Failed to update profile");
+  return response.json();
+};
 export const loginUser = ({ email, password }) => {
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
@@ -30,15 +22,6 @@ export const loginUser = ({ email, password }) => {
     body: JSON.stringify({ email, password }),
   }).then(checkResponse);
 };
-
-// move this to auth.js, perhaps (??)
-// export const getCurrentUser = (token) => {
-//   return fetch(`${BASE_URL}/users/me`, {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   }).then(checkResponse);
-// };
 
 export const getItems = () => {
   return fetch(`${BASE_URL}/items`, {
@@ -68,7 +51,6 @@ export const deleteItem = (itemId) => {
   }).then(checkResponse);
 };
 
-// this already exist on auth.js / keep there / delete here
 export const updateLikeStatus = (itemId, isLiked) => {
   return fetch(`${BASE_URL}/items/${itemId}/likes`, {
     method: isLiked ? "DELETE" : "PUT",
@@ -77,16 +59,3 @@ export const updateLikeStatus = (itemId, isLiked) => {
     },
   }).then(checkResponse);
 };
-
-// handleUpdateProfile={async (updatedData) => {
-//     const token = localStorage.getItem("jwt");
-//     try {
-//       const updatedUser = await updateUserProfile(
-//         token,
-//         updatedData,
-//       );
-//       setCurrentUser(updatedUser);
-//     } catch (error) {
-//       console.error("Failed to update profile:", error);
-//     }
-//   }}

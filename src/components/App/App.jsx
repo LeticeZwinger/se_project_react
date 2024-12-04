@@ -21,14 +21,14 @@ import {
   registerUser,
   loginUser,
   verifyToken,
-  updateUserProfile,
+  getCurrentUser,
 } from "../../utils/auth";
 import {
   CurrentUserProvider,
   CurrentUserContext,
 } from "../../Contexts/CurrentUserContext";
 import LoginModal from "../LoginModal/LoginModal";
-import { updateLikeStatus } from "../../utils/Api";
+import { updateLikeStatus, updateUserProfile } from "../../utils/Api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -60,7 +60,6 @@ function App() {
   useEffect(() => {
     getItems()
       .then((items) => {
-        console.log("items", items);
         setClothesItem(items);
       })
       .catch(console.error);
@@ -128,10 +127,10 @@ function App() {
 
   const handleRegister = async ({ name, avatar, email, password }) => {
     try {
-      const data = await registerUser({ name, avatar, email, password });
-      const token = data.token;
-      localStorage.setItem("jwt", token);
-      const userData = await getCurrentUser(token);
+      await registerUser({ name, avatar, email, password });
+      const json = await loginUser({ email, password });
+      localStorage.setItem("jwt", json.token);
+      const userData = await getCurrentUser(json.token);
       setCurrentUser(userData);
       setIsLoggedIn(true);
       closeActiveModal();
@@ -150,6 +149,17 @@ function App() {
       closeActiveModal();
     } catch (error) {
       console.error("Login error:", error);
+    }
+  };
+
+  const handleUpdateProfile = async (updatedData) => {
+    const token = localStorage.getItem("jwt");
+    try {
+      const updatedUser = await updateUserProfile(token, updatedData);
+      setCurrentUser(updatedUser);
+      closeActiveModal();
+    } catch (error) {
+      console.error("Failed to update profile:", error);
     }
   };
 
@@ -199,7 +209,7 @@ function App() {
                     handleAddClick={handleAddClick}
                     onDeleteItem={handleDeleteItem}
                     onClose={closeActiveModal}
-                    // handleUpdateProfile={handleUpdateProfile} // TODO A FUNCTION FOR UPDATE PROFILE
+                    handleUpdateProfile={handleUpdateProfile} // TODO A FUNCTION FOR UPDATE PROFILE
                     onLike={handleUpdateLike}
                   />
                 ) : (

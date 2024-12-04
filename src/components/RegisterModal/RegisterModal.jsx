@@ -5,7 +5,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 import "./RegisterModal.css";
 
-function RegisterModal({ isOpen, onClose, openLoginModal }) {
+function RegisterModal({ isOpen, onClose, onRegister, openLoginModal }) {
   const { setCurrentUser, setIsLoggedIn } = useContext(CurrentUserContext);
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
@@ -23,10 +23,10 @@ function RegisterModal({ isOpen, onClose, openLoginModal }) {
     setIsFormValid(emailValid && nameValid && avatarValid);
   }, [email, name, avatar]);
 
-  //API LOGIC SHOULD GO ON API.JSX >>>>
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
+
+    setError("f");
     setLoading(true);
     try {
       await onRegister({ name, avatar, email, password });
@@ -46,7 +46,6 @@ function RegisterModal({ isOpen, onClose, openLoginModal }) {
       onSubmit={handleSubmit}
       isFormValid={isFormValid}
       containerClassName="modal__container_register"
-      errorMessage={error}
       alternateButton={
         <button className="modal__or-signin-btn" onClick={openLoginModal}>
           or Log in
@@ -101,6 +100,7 @@ function RegisterModal({ isOpen, onClose, openLoginModal }) {
           placeholder="Avatar URL"
         />
       </label>
+      {error}
     </ModalWithForm>
   );
 }

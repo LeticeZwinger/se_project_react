@@ -48,7 +48,7 @@ const AddItemModal = ({
       setLoading(true);
       try {
         await handleAddItem(data);
-        handleCloseClick();
+        onClose();
       } catch (error) {
         console.error("Failed to add item:", error);
       } finally {

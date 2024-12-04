@@ -11,8 +11,6 @@ export const CurrentTempUnitProvider = ({ children }) => {
   };
 
   const toConvert = (degreesF) => {
-    console.log(degreesF);
-
     if (currentTempUnit === "F") {
       return degreesF;
     } else {
