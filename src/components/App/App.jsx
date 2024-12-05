@@ -103,7 +103,9 @@ function App() {
 
   const handleAddItem = (data) => {
     addItem(data.name, data.imageURL, data.selectedWeather)
-      .then(() => handleGetItems())
+      .then((newItem) => {
+        setClothesItem((prevItems) => [newItem, ...prevItems]);
+      })
       .catch((err) => console.error("Failed to add item:", err));
   };
 
