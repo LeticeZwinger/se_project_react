@@ -111,7 +111,11 @@ function App() {
 
   const handleDeleteItem = (itemId) => {
     deleteItem(itemId)
-      .then(() => handleGetItems())
+      .then(() => {
+        setClothesItem((prevItems) =>
+          prevItems.filter((item) => item._id !== itemId),
+        );
+      })
       .catch((err) => console.error("Failed to delete item:", err));
   };
 
