@@ -47,7 +47,11 @@ function RegisterModal({ isOpen, onClose, onRegister, openLoginModal }) {
       isFormValid={isFormValid}
       containerClassName="modal__container_register"
       alternateButton={
-        <button className="modal__or-signin-btn" onClick={openLoginModal}>
+        <button
+          className="modal__or-signin-btn"
+          onClick={openLoginModal}
+          type="button"
+        >
           or Log in
         </button>
       }

@@ -52,7 +52,11 @@ function LoginModal({ isOpen, onClose, openSignUpModal }) {
       containerClassName="modal__container_login"
       errorMessage={error}
       alternateButton={
-        <button className="modal__or-signup-btn" onClick={openSignUpModal}>
+        <button
+          className="modal__or-signup-btn"
+          onClick={openSignUpModal}
+          type="button"
+        >
           or Sign Up
         </button>
       }
