@@ -1,4 +1,7 @@
-export const BASE_URL = "http://localhost:3001";
+export const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://api.leticez.soon.it"
+    : "http://localhost:3001";
 import { checkResponse } from "./weatherApi";
 
 export const getToken = () => localStorage.getItem("jwt"); //TODO pass as function instead of repeat it everytime

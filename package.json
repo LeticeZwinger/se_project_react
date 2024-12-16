@@ -2,7 +2,7 @@
   "name": "vite-project",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://leticezwinger.github.io/se_project_react",
+  "homepage": " https://leticez.soon.it",
   "type": "module",
   "scripts": {
     "dev": "vite --open",
@@ -10,7 +10,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build && scp -r ./dist/* leticedss@leticez.soon.it:/home/leticedss/frontend"
   },
   "dependencies": {
     "react": "^18.3.1",
