@@ -2,7 +2,7 @@
   "name": "vite-project",
   "private": true,
   "version": "0.0.0",
-  "homepage": " https://leticez.soon.it",
+  "homepage": "https://leticez.soon.it",
   "type": "module",
   "scripts": {
     "dev": "vite --open",
