@@ -27,7 +27,7 @@ export const addItem = (name, imageUrl, weather) => {
 
 export const deleteItem = (itemId) => {
   const token = localStorage.getItem("jwt");
-  return request(`${BASE_URL}/items/${itemId}`, {
+  return request(`${BASE_URL}/${itemId}/items`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -36,25 +36,25 @@ export const deleteItem = (itemId) => {
   });
 };
 
-export const addCardLike = (id, token) => {
-  return request(`${BASE_URL}/items/${id}/likes`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
-};
+// export const addCardLike = (id, token) => {
+//   return request(`${BASE_URL}/items/${id}/likes`, {
+//     method: "PUT",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${token}`,
+//     },
+//   });
+// };
 
-export const removeCardLike = (id, token) => {
-  return request(`${BASE_URL}/items/${id}/likes`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
-};
+// export const removeCardLike = (id, token) => {
+//   return request(`${BASE_URL}/items/${id}/likes`, {
+//     method: "DELETE",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${token}`,
+//     },
+//   });
+// };
 
 export function checkResponse(res) {
   if (res.ok) {

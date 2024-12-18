@@ -53,4 +53,3 @@ export const verifyToken = async (token) => {
   }
   return response.json();
 };
-// move this to Api.js, perhaps (??)

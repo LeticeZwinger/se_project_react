@@ -1,6 +1,7 @@
 import { BASE_URL } from "./auth";
 import { checkResponse } from "./weatherApi";
 
+// something going on with id??
 export const updateUserProfile = async (token, { name, avatar }) => {
   const response = await fetch(`${BASE_URL}/users/me`, {
     method: "PATCH",
@@ -42,16 +43,22 @@ export const addItem = (name, imageURL, weatherType) => {
   }).then(checkResponse);
 };
 
-export const deleteItem = (itemId) => {
-  return fetch(`${BASE_URL}/items/${itemId}`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-    },
-  }).then(checkResponse);
-};
+// something going on with id??
+// export const deleteItem = (itemId) => {
+//   debugger;
+//   return fetch(`${BASE_URL}/${itemId}/items`, {
+//     method: "DELETE",
+//     headers: {
+//       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+//     },
+//   }).then(checkResponse);
+// };
+
+// something going on with id??
 
 export const updateLikeStatus = (itemId, isLiked) => {
+  console.log("itemId being sent:", itemId);
+
   return fetch(`${BASE_URL}/items/${itemId}/likes`, {
     method: isLiked ? "DELETE" : "PUT",
     headers: {
