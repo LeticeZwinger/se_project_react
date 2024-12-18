@@ -113,7 +113,7 @@ function App() {
     deleteItem(itemId)
       .then(() => {
         setClothesItem((prevItems) =>
-          prevItems.filter((item) => item._id !== itemId),
+          prevItems.filter((item) => item._id !== itemId)
         );
       })
       .catch((err) => console.error("Failed to delete item:", err));
@@ -124,8 +124,8 @@ function App() {
       .then((updatedItem) => {
         setClothesItem((prevItems) =>
           prevItems.map((item) =>
-            item._id === updatedItem._id ? updatedItem : item,
-          ),
+            item._id === updatedItem._id ? updatedItem : item
+          )
         );
       })
       .catch((err) => console.error("Failed to update like status:", err));
