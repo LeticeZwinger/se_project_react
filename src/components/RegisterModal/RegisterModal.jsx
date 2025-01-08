@@ -26,7 +26,7 @@ function RegisterModal({ isOpen, onClose, onRegister, openLoginModal }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setError("f");
+    setError("");
     setLoading(true);
     try {
       await onRegister({ name, avatar, email, password });
