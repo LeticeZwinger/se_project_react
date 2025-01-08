@@ -53,5 +53,3 @@ export const verifyToken = async (token) => {
   }
   return response.json();
 };
-
-//// using this coment to check git issues
