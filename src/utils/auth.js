@@ -1,6 +1,6 @@
 export const BASE_URL =
   process.env.NODE_ENV === "production"
-    ? "https://api.leticez.soon.it"
+    ? "https://api.leticezwinger.com"
     : "http://localhost:3001";
 import { checkResponse } from "./weatherApi";
 
