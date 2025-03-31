@@ -2,7 +2,7 @@
   "name": "vite-project",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://LeticeZwinger.github.io/se_project_react",
+  "homepage": "https://leticez.soon.it",
   "type": "module",
   "scripts": {
     "dev": "vite --open",
