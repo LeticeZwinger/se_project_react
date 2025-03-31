@@ -1,7 +1,6 @@
 import { BASE_URL } from "./auth";
 import { checkResponse } from "./weatherApi";
 
-// something going on with id??
 export const updateUserProfile = async (token, { name, avatar }) => {
   const response = await fetch(`${BASE_URL}/users/me`, {
     method: "PATCH",
@@ -42,8 +41,6 @@ export const addItem = (name, imageURL, weatherType) => {
     body: JSON.stringify({ name, imageURL, weatherType }),
   }).then(checkResponse);
 };
-
-// something going on with id??
 
 export const updateLikeStatus = (itemId, isLiked) => {
   return fetch(`${BASE_URL}/items/${itemId}/likes`, {
