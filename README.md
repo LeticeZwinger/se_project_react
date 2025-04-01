@@ -20,7 +20,7 @@ This is a Triple10 web dev program project. In this project we practice:
 
 # API
 
-Posts are saved into [OpenWeather](https://openweathermap.org/) database via implemented API calls:
+Posts are saved into [MongoDB](https://www.mongodb.com/) database and implemented API calls from [OpenWeather](https://openweathermap.org/):
 
 * PUT : DELETE - updateLikeStatus = (itemId, isLiked)
 
@@ -33,16 +33,16 @@ Posts are saved into [OpenWeather](https://openweathermap.org/) database via imp
 # Deploy
 
 	Install Dependencies
-	•	npm install
+	• npm install
 
 	Development Mode
-	•	npm run dev
+	• npm run dev
 
 	Production Build
-	•      npm run build
+	• npm run build
 
 	Deploying
-	•	npm run deploy
+	• npm run deploy
 	
 
 # System Requirements
@@ -54,12 +54,18 @@ Posts are saved into [OpenWeather](https://openweathermap.org/) database via imp
 
 
 # Plugins
-* @vitejs/plugin-react: Enables React fast refresh and JSX transformation in Vite
-  
-	ESLint Plugins:
-* eslint-plugin-react
-* eslint-plugin-react-hooks
-* eslint-plugin-react-refresh
+Vite
+• vite v5.3.4 – A next-generation frontend build tool that provides fast development and optimized production builds.
+• @vitejs/plugin-react v4.3.1 – A Vite plugin that integrates React, enabling fast refresh and improving the development experience.
+
+ESLint
+• eslint v8.57.0 – A highly configurable linter for JavaScript/TypeScript that helps catch errors and enforce code quality.
+• eslint-plugin-react v7.34.3 – Provides React-specific linting rules to enforce best practices and maintain consistency in your React components.
+• eslint-plugin-react-hooks v4.6.2 – Ensures proper usage of React Hooks by enforcing the rules around hook usage.
+• eslint-plugin-react-refresh v0.4.7 – Enhances the development experience by integrating React Fast Refresh into your linting workflow.
+
+Deployment
+• gh-pages v6.3.0 – Automates the deployment process, making it easier to publish your built project to GitHub Pages.
 
 
 
