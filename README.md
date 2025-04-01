@@ -1,9 +1,60 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# [Project WTWR (What to Wear?)](https://leticezwinger.com/)
 
-Currently, two official plugins are available:
+# Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-- [@se_project_express](https://github.com/LeticeZwinger/se_project_express)
+# Description
+
+A full-stack web app that helps users save outfits and decide what to wear based on the weather. Built with React, Node.js, and MongoDB, featuring user authentication, dynamic weather-based item suggestions, and responsive design.
+
+This is a Triple10 web dev program project. In this project we practice:
+
+- HTML semantics
+- CSS properties
+- Grid layouts
+- Responsive web design
+- Media queries
+- RESTful APIs
+
+![desktop-view](/src/assets/wtwr.png)
+
+# API
+
+Posts are saved into [OpenWeather](https://openweathermap.org/) database via implemented API calls:
+
+* PUT : DELETE - updateLikeStatus = (itemId, isLiked)
+
+* POST - const addItem = (name, imageURL, weatherType) 
+
+* POST - const addItem = (name, imageUrl, weather)
+
+* DETELE - const deleteItem = (itemId)
+
+
+
+# Deploy
+
+	Install Dependencies
+	•	npm install
+
+	Development Mode
+	•	npm run dev
+
+	Production Build
+	•      npm run build
+
+	Deploying
+	•	npm run deploy
+	
+
+# System Requirements
+
+
+
+# Plugins
+
+
+
+# [Video Demo]
+
+# [Figma Design]
