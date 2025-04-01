@@ -54,18 +54,18 @@ Posts are saved into [MongoDB](https://www.mongodb.com/) database and implemente
 
 
 # Plugins
-Vite
-• vite v5.3.4 – A next-generation frontend build tool that provides fast development and optimized production builds.
-• @vitejs/plugin-react v4.3.1 – A Vite plugin that integrates React, enabling fast refresh and improving the development experience.
+	Vite
+	• vite v5.3.4 – A next-generation frontend build tool that provides fast development and optimized production builds.
+	• @vitejs/plugin-react v4.3.1 – A Vite plugin that integrates React, enabling fast refresh and improving the development experience.
 
-ESLint
-• eslint v8.57.0 – A highly configurable linter for JavaScript/TypeScript that helps catch errors and enforce code quality.
-• eslint-plugin-react v7.34.3 – Provides React-specific linting rules to enforce best practices and maintain consistency in your React components.
-• eslint-plugin-react-hooks v4.6.2 – Ensures proper usage of React Hooks by enforcing the rules around hook usage.
-• eslint-plugin-react-refresh v0.4.7 – Enhances the development experience by integrating React Fast Refresh into your linting workflow.
+	ESLint
+	• eslint v8.57.0 – A highly configurable linter for JavaScript/TypeScript that helps catch errors and enforce code quality.
+	• eslint-plugin-react v7.34.3 – Provides React-specific linting rules to enforce best practices and maintain consistency in your React components.
+	• eslint-plugin-react-hooks v4.6.2 – Ensures proper usage of React Hooks by enforcing the rules around hook usage.
+	• eslint-plugin-react-refresh v0.4.7 – Enhances the development experience by integrating React Fast Refresh into your linting workflow.
 
-Deployment
-• gh-pages v6.3.0 – Automates the deployment process, making it easier to publish your built project to GitHub Pages.
+	Deployment
+	• gh-pages v6.3.0 – Automates the deployment process, making it easier to publish your built project to GitHub Pages.
 
 
 
