@@ -1,7 +1,14 @@
-
 # [Project WTWR (What to Wear?)](https://leticezwinger.com/)
 
 # Table of Contents
+
+- [Description](#description)
+- [API](#api)
+- [Deploy](#deploy)
+- [System Requirements](#system-requirements)
+- [Plugins](#plugins)
+- [<a href="https://youtu.be/TOht5NQbq64" rel="nofollow">Video Demo</a>](https://youtu.be/TOht5NQbq64)
+- [<a href="https://www.figma.com/design/dQLJwEKasIdspciJAJrCaf/Sprint-11_-WTWR?node-id=311-433&amp;p=f&amp;t=8heaDjekYZaoSaKv-0" rel="nofollow">Figma Design</a>](https://www.figma.com/design/dQLJwEKasIdspciJAJrCaf/Sprint-11_-WTWR?node-id=311-433&p=f&t=8heaDjekYZaoSaKv-0)
 
 # Description
 
@@ -22,52 +29,46 @@ This is a Triple10 web dev program project. In this project we practice:
 
 Posts are saved into [MongoDB](https://www.mongodb.com/) database and implemented API calls from [OpenWeather](https://openweathermap.org/):
 
-* PUT : DELETE - updateLikeStatus = (itemId, isLiked)
+- PUT : DELETE - updateLikeStatus = (itemId, isLiked)
 
-* POST - const addItem = (name, imageURL, weatherType) 
+- POST - const addItem = (name, imageURL, weatherType)
 
-* DETELE - const deleteItem = (itemId)
-
-
+- DETELE - const deleteItem = (itemId)
 
 # Deploy
 
-	Install Dependencies
-	• npm install
+    Install Dependencies
+    • npm install
 
-	Development Mode
-	• npm run dev
+    Development Mode
+    • npm run dev
 
-	Production Build
-	• npm run build
+    Production Build
+    • npm run build
 
-	Deploying
-	• npm run deploy
-	
+    Deploying
+    • npm run deploy
 
 # System Requirements
 
-* Node.js: v18.0.0 or later
-* npm: v8.0.0 or later (or an equivalent package manager)
-* Vite: Used for bundling and local development (installed as a dev dependency)
-
-
+- Node.js: v18.0.0 or later
+- npm: v8.0.0 or later (or an equivalent package manager)
+- Vite: Used for bundling and local development (installed as a dev dependency)
 
 # Plugins
-	Vite
-	• vite v5.3.4 – Modern build tool for fast development and optimized builds.
-	• @vitejs/plugin-react v4.3.1 –  Adds React support to Vite, including fast refresh.
 
-	ESLint
-	• eslint v8.57.0 – Tool to catch errors and enforce code style.
-	• eslint-plugin-react v7.34.3 – Linting rules for React apps.
-	• eslint-plugin-react-hooks v4.6.2 – Ensures correct use of React Hooks.
-	• eslint-plugin-react-refresh v0.4.7 – Supports fast refresh in React during development.
+    Vite
+    • vite v5.3.4 – Modern build tool for fast development and optimized builds.
+    • @vitejs/plugin-react v4.3.1 –  Adds React support to Vite, including fast refresh.
 
-	Deployment
-	• gh-pages v6.3.0 – Automates the deployment process, making it easier to publish the project to GitHub Pages.
+    ESLint
+    • eslint v8.57.0 – Tool to catch errors and enforce code style.
+    • eslint-plugin-react v7.34.3 – Linting rules for React apps.
+    • eslint-plugin-react-hooks v4.6.2 – Ensures correct use of React Hooks.
+    • eslint-plugin-react-refresh v0.4.7 – Supports fast refresh in React during development.
 
-
+    Deployment
+    • gh-pages v6.3.0 – Automates the deployment process, making it easier to publish the project to GitHub Pages.
 
 # [Video Demo](https://youtu.be/TOht5NQbq64)
 
